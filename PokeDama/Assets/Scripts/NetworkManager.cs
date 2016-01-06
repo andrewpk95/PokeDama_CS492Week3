@@ -1,13 +1,48 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using SocketIO;
+/*
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
-using System.Collections;
+*/
 
 public class NetworkManager : MonoBehaviour {
+
+	private SocketIOComponent socket;
 
 	void Start() {
 		GameObject go = GameObject.Find("SocketIO");
 		socket = go.GetComponent<SocketIOComponent>();
+
+
+
+		if (socket.IsConnected) {
+			Debug.Log ("Connected to Server!");
+			StartCoroutine("BeepBoop");
+		} else {
+			Debug.Log ("Not Connected...");
+		}
+
+	}
+
+	private IEnumerator BeepBoop()
+	{
+		int i = 0;
+		while (true) {
+			// wait 1 seconds and continue
+			yield return new WaitForSeconds (1);
+			i++;
+			Dictionary<string, string> data = new Dictionary<string, string> ();
+			data ["node"] = "node";
+			data ["age"] = i.ToString();
+
+			socket.Emit ("new message", new JSONObject (data));
+			Debug.Log ("Beep");
+
+			// wait 3 seconds and continue
+			yield return new WaitForSeconds (3);
+		}
 	}
 
 	/*
