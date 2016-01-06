@@ -10,10 +10,17 @@ public class BattleUIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			OnEscapeKeyPress();
+		}
 	}
 
 	public void OnRunButtonClick() {
+		Debug.Log ("Moving to Map Scene...");
+		Application.LoadLevel ("MapScene");
+	}
+
+	void OnEscapeKeyPress() {
 		Debug.Log ("Moving to Map Scene...");
 		Application.LoadLevel ("MapScene");
 	}
