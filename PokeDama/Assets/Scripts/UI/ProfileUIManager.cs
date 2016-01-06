@@ -11,7 +11,9 @@ public class ProfileUIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			OnEscapeKeyPress();
+		}
 	}
 
 	public void OnPetButtonClick() {
@@ -22,5 +24,10 @@ public class ProfileUIManager : MonoBehaviour {
 	public void OnMapButtonClick() {
 		Debug.Log ("You will move to map scene...");
 		Application.LoadLevel ("MapScene");
+	}
+
+	void OnEscapeKeyPress() {
+		Debug.Log ("Quitting...");
+		Application.Quit();
 	}
 }
