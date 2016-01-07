@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProfileGameManager : MonoBehaviour {
+public class ProfileGameManager : MonoBehaviour, GameManager {
 
 	NetworkManager network;
 	int friendliness;
@@ -12,10 +12,6 @@ public class ProfileGameManager : MonoBehaviour {
 		network = FindObjectOfType<NetworkManager> ();
 
 		friendliness = 0;
-		pokeDama = new PokeDama (1111, 1);
-		string jsonString = JsonUtility.ToJson (pokeDama);
-		JSONObject json = new JSONObject (jsonString);
-		Debug.Log(json.ToString());
 	}
 	
 	// Update is called once per frame
@@ -26,5 +22,9 @@ public class ProfileGameManager : MonoBehaviour {
 	public void Pet() {
 		friendliness++;
 		Debug.Log (friendliness);
+	}
+
+	public void handleResponse(string data) {
+
 	}
 }
