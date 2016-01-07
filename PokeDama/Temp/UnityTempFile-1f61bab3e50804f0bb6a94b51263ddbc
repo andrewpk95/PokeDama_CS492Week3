@@ -171,5 +171,6 @@
 'Assets/NGUI/Scripts/Editor/UIWidgetContainerEditor.cs'
 'Assets/NGUI/Scripts/Editor/UIWidgetInspector.cs'
 'Assets/NGUI/Scripts/Editor/UIWrapContentEditor.cs'
+'Assets/SocketIO/JSONObject/Editor/JSONChecker.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/2.0/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/2.0/System.Xml.Linq.dll'

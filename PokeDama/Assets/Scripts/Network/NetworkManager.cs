@@ -90,9 +90,17 @@ public class NetworkManager : MonoBehaviour {
 
 	public void RequestCreation(PokeDama pokedama) {
 		string jsonString = JsonUtility.ToJson (pokedama);
+		JSONObject jsonPoke = new JSONObject (jsonString);
+		Debug.Log (jsonPoke.ToString ());
+		/*
 		Dictionary<string, string> data = new Dictionary<string, string> ();
 		data ["RequestType"] = "Create";
 		data ["PokeDama"] = jsonString;
-		socket.Emit ("Request", new JSONObject (data));
+		*/
+		JSONObject json = new JSONObject ();
+		json.AddField ("RequestType", "Create");
+		json.AddField ("PokeDama", jsonPoke);
+		Debug.Log (json.ToString());
+		socket.Emit ("Request", json);
 	}
 }

@@ -14,9 +14,7 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 
 		PokeDama inkachu = new PokeDama (imei, 1);
 
-
-		//network.RequestData (imei);
-		network.RequestCreation(inkachu);
+		network.RequestData (imei);
 
 	}
 	
@@ -28,19 +26,21 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 	public void handleResponse(string data) {
 		
 		JSONObject jsonData = new JSONObject (data);
-		/*
-		bool successful = jsonData.GetField ("successful").b;
-		Debug.Log(successful);
-		if (successful) {
-			Debug.Log ("Successfully found your PokeDama!");
-			string pokeDamaJSON = jsonData.GetField ("message").ToString();
-			Debug.Log (pokeDamaJSON);
-		} else {
-			Debug.Log ("Failed to find your PokeDama...");
-			Debug.Log ("Creating new PokeDama...");
 
+		if (jsonData.GetField ("ResponseType").str.Equals ("findByIMEI")) {
+			bool successful = jsonData.GetField ("successful").b;
+			Debug.Log (successful);
+			if (successful) {
+				Debug.Log ("Successfully found your PokeDama!");
+				string pokeDamaJSON = jsonData.GetField ("message").ToString ();
+				Debug.Log (pokeDamaJSON);
+			} else {
+				Debug.Log ("Failed to find your PokeDama...");
+				Debug.Log ("Creating new PokeDama...");
+				//SceneManager.LoadScene ("CreateScene");
+			}
 		}
-		*/
+
 		if (jsonData.GetField ("ResponseType").str.Equals ("Create")) {
 			Debug.Log ("Successfully made inkachu!");
 			Debug.Log (jsonData.GetField ("message").str);
