@@ -9,15 +9,20 @@ using UnityEngine.Networking.NetworkSystem;
 
 public class NetworkManager : MonoBehaviour {
 
+	public bool dontDestroyOnLoad = false;
+
 	private SocketIOComponent socket;
 
 	GameManager gameManager;
 
-	void Awake() {
+	void Start() {
+		//Makes this object stay throughout the entire scene
+		if (dontDestroyOnLoad) {
+			DontDestroyOnLoad (transform.gameObject);
+		}
+
 		GameObject go = GameObject.Find("SocketIO");
 		socket = go.GetComponent<SocketIOComponent>();
-
-		gameManager = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ();
 
 		socket.On ("new message", NewMessage);
 		socket.On ("ConnectionTest", NetTest);
@@ -41,6 +46,9 @@ public class NetworkManager : MonoBehaviour {
 		string data = socketEvent.data.ToString ();
 		Debug.Log ("Response from server: " + data);
 		StopCoroutine ("ConnectionTest");
+		GameObject go = GameObject.FindGameObjectWithTag ("GameController");
+		gameManager = go.GetComponent<GameManager> ();
+		((MonoBehaviour)gameManager).enabled = true;
 	}
 
 	public void NetResponse(SocketIOEvent socketEvent) {

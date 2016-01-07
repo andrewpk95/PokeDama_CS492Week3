@@ -27,23 +27,23 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 		
 		JSONObject jsonData = new JSONObject (data);
 
+		//Handling IMEI find Request here
 		if (jsonData.GetField ("ResponseType").str.Equals ("findByIMEI")) {
 			bool successful = jsonData.GetField ("successful").b;
 			Debug.Log (successful);
 			if (successful) {
 				Debug.Log ("Successfully found your PokeDama!");
-				string pokeDamaJSON = jsonData.GetField ("message").ToString ();
+				string pokeDamaJSON = jsonData.GetField ("message").ToString();
 				Debug.Log (pokeDamaJSON);
+				PokeDama inkachu = JsonUtility.FromJson<PokeDama> (pokeDamaJSON);
+				PokeDamaManager pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+				pokeDamaManager.SaveMyPokeDama (inkachu);
+				pokeDamaManager.DisplayMyPokeDama (new Vector3 (0, 0, 0));
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
 				Debug.Log ("Creating new PokeDama...");
 				//SceneManager.LoadScene ("CreateScene");
 			}
-		}
-
-		if (jsonData.GetField ("ResponseType").str.Equals ("Create")) {
-			Debug.Log ("Successfully made inkachu!");
-			Debug.Log (jsonData.GetField ("message").str);
 		}
 	}
 }

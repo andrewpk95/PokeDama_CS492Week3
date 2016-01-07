@@ -48,6 +48,7 @@ namespace SocketIO
 		public float ackExpirationTime = 1800f;
 		public float pingInterval = 25f;
 		public float pingTimeout = 60f;
+		public bool dontDestroyOnLoad = false;
 
 		public WebSocket socket { get { return ws; } }
 		public string sid { get; set; }
@@ -91,6 +92,11 @@ namespace SocketIO
 
 		public void Awake()
 		{
+			//Makes this object stay throughout the entire scene
+			if (dontDestroyOnLoad) {
+				DontDestroyOnLoad (transform.gameObject);
+			}
+
 			encoder = new Encoder();
 			decoder = new Decoder();
 			parser = new Parser();
