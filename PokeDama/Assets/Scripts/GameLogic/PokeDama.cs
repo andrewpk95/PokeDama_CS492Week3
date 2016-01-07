@@ -2,17 +2,24 @@
 
 [Serializable]
 public class PokeDama {
-	
+
+	//Whose PokeDama is this?
+	public string IMEI;
+	public GoogleMapLocation location;
+
 	//Identifiers
-	int id;
-	String name;
+	public int id;
+	public String name;
 
 	//Attributes
-	int maxHealth;
-	int health;
+	public int maxHealth;
+	public int health;
 
-	public PokeDama(int ID) {
+	public PokeDama(string imei, int ID) {
+		IMEI = imei;
 		id = ID;
+		maxHealth = ID * 2;
+		health = maxHealth;
 	}
 
 }

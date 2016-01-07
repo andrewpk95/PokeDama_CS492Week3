@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ProfileUIManager : MonoBehaviour {
@@ -23,7 +24,7 @@ public class ProfileUIManager : MonoBehaviour {
 
 	public void OnMapButtonClick() {
 		Debug.Log ("You will move to map scene...");
-		Application.LoadLevel ("MapScene");
+		SceneManager.LoadScene ("MapScene");
 	}
 
 	void OnEscapeKeyPress() {

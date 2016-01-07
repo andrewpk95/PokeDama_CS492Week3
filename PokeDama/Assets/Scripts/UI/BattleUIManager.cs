@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class BattleUIManager : MonoBehaviour {
@@ -17,11 +18,11 @@ public class BattleUIManager : MonoBehaviour {
 
 	public void OnRunButtonClick() {
 		Debug.Log ("Moving to Map Scene...");
-		Application.LoadLevel ("MapScene");
+		SceneManager.LoadScene ("MapScene");
 	}
 
 	void OnEscapeKeyPress() {
 		Debug.Log ("Moving to Map Scene...");
-		Application.LoadLevel ("MapScene");
+		SceneManager.LoadScene ("MapScene");
 	}
 }

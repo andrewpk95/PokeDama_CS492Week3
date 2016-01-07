@@ -15,66 +15,80 @@ public class NetworkManager : MonoBehaviour {
 		GameObject go = GameObject.Find("SocketIO");
 		socket = go.GetComponent<SocketIOComponent>();
 
-
+		socket.On ("new message", NewMessage);
+		socket.On ("ConnectionTest", NetTest);
+		socket.On ("Response", NetResponse);
+		socket.Connect ();
 
 		if (socket.IsConnected) {
 			Debug.Log ("Connected to Server!");
-			StartCoroutine("BeepBoop");
+			StartCoroutine("ConnectionTest");
+
+
+			Dictionary<string, string> data = new Dictionary<string, string> ();
+			data ["node"] = "ConnectionTest";
+			data ["message"] = "abcd";
+			//socket.Emit ("ConnectionTest", new JSONObject (data));
+			StartCoroutine (SendToServer ("ConnectionTest", new JSONObject(data)));
+			Debug.Log ("Sent abcd");
+
 		} else {
 			Debug.Log ("Not Connected...");
 		}
 
 	}
 
-	private IEnumerator BeepBoop()
+	public void NewMessage(SocketIOEvent socketEvent) {
+		Debug.Log ("Response from server! " + socketEvent.data);
+	}
+
+	public void NetTest(SocketIOEvent socketEvent) {
+		string data = socketEvent.data.ToString ();
+		Debug.Log ("Response from server: " + data);
+		/*
+		Dictionary<string, string> request = new Dictionary<string, string> ();
+		request ["node"] = "Request";
+		request ["message"] = "reply plz";
+		StartCoroutine (SendToServer ("Request", new JSONObject(request)));
+		*/
+	}
+
+	public void NetResponse(SocketIOEvent socketEvent) {
+		string data = socketEvent.data.ToString ();
+		Debug.Log ("Response from server: " + data);
+	}
+
+	private IEnumerator SendToServer(string ev, JSONObject json) {
+		socket.Emit (ev, json);
+		yield return null;
+	}
+
+	private IEnumerator ConnectionTest()
 	{
-		int i = 0;
-		while (true) {
-			// wait 1 seconds and continue
-			yield return new WaitForSeconds (1);
-			i++;
-			Dictionary<string, string> data = new Dictionary<string, string> ();
-			data ["node"] = "node";
-			data ["age"] = i.ToString();
-
-			socket.Emit ("new message", new JSONObject (data));
-			Debug.Log ("Beep");
-
-			// wait 3 seconds and continue
-			yield return new WaitForSeconds (3);
-		}
+		Dictionary<string, string> data = new Dictionary<string, string> ();
+		data ["node"] = "ConnectionTest";
+		data ["message"] = "abcd";
+		socket.Emit ("ConnectionTest", new JSONObject (data));
+		Debug.Log ("ConnectionTest");
+		yield return null;
 	}
 
-	/*
-	NetworkClient client;
-
-	// Use this for initialization
-	void Start () {
-		SetupClient ();
+	public void RequestSave(PokeDama pokedama) {
+		string jsonString = JsonUtility.ToJson (pokedama);
+		Dictionary<string, string> data = new Dictionary<string, string> ();
+		data ["RequestType"] = "Save";
+		data ["PokeDama"] = jsonString;
+		socket.Emit ("Request", new JSONObject (data));
 	}
 
-	public void SetupClient()
-	{
-		client = new NetworkClient();
-		client.RegisterHandler (MsgType.Connect, OnConnected);
-		client.Connect("143.248.140.92", 1336);
+	public void RequestData(string IMEI) {
+		Dictionary<string, string> data = new Dictionary<string, string> ();
+		data ["RequestType"] = "FindByIMEI";
+		data ["IMEI"] = IMEI;
+		socket.Emit ("Request", new JSONObject (data));
 	}
 
-	public void OnConnected(NetworkMessage netMsg)
-	{
-		Debug.Log("Connected to server");
-		var message = netMsg.ReadMessage<StringMessage> ();
-		Debug.Log ("Received messege: " + message.value);
+	public void RequestData(GoogleMapLocation location) {
 
-		//StartCoroutine (Listen (netMsg));
 	}
-
-	IEnumerator Listen(NetworkMessage netMsg) {
-		while (true) {
-			var message = netMsg.ReadMessage<StringMessage> ();
-			Debug.Log ("Received messege: " + message.value);
-			yield return null;
-		}
-	}
-	*/
 }
