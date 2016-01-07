@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GoogleMaps\Scripts\GoogleMap.cs" />
+     <Compile Include="Assets\MenuGameManager.cs" />
+     <Compile Include="Assets\MenuUIManager.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -183,17 +185,15 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Scripts\GameLogic\GameManager.cs" />
-     <Compile Include="Assets\Scripts\GameLogic\MenuGameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PokeDama.cs" />
      <Compile Include="Assets\Scripts\GameLogic\ProfileGameManager.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MapDataManager.cs" />
      <Compile Include="Assets\Scripts\MapDisplayManager.cs" />
      <Compile Include="Assets\Scripts\Message.cs" />
-     <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
+     <Compile Include="Assets\Scripts\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\UI\BattleUIManager.cs" />
      <Compile Include="Assets\Scripts\UI\MapUIManager.cs" />
-     <Compile Include="Assets\Scripts\UI\MenuUIManager.cs" />
      <Compile Include="Assets\Scripts\UI\ProfileUIManager.cs" />
      <Compile Include="Assets\SocketIO\JSONObject\JSONObject.cs" />
      <Compile Include="Assets\SocketIO\JSONObject\JSONTemplates.cs" />
