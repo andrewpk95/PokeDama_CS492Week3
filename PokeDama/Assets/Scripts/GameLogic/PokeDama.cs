@@ -5,7 +5,7 @@ public class PokeDama {
 
 	//Whose PokeDama is this?
 	public string IMEI;
-	//public GoogleMapLocation location;
+	public GoogleMapLocation location;
 
 	//Identifiers
 	public int id;

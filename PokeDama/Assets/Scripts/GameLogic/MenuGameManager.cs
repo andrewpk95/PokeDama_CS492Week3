@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MenuGameManager : MonoBehaviour, GameManager {
@@ -12,10 +13,7 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		//Debug.Log (imei);
 
-		PokeDama inkachu = new PokeDama (imei, 1);
-
 		network.RequestData (imei);
-
 	}
 	
 	// Update is called once per frame
@@ -28,7 +26,7 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 		JSONObject jsonData = new JSONObject (data);
 
 		//Handling IMEI find Request here
-		if (jsonData.GetField ("ResponseType").str.Equals ("findByIMEI")) {
+		if (jsonData.GetField ("ResponseType").str.Equals ("FindByIMEI")) {
 			bool successful = jsonData.GetField ("successful").b;
 			Debug.Log (successful);
 			if (successful) {
@@ -38,11 +36,11 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 				PokeDama inkachu = JsonUtility.FromJson<PokeDama> (pokeDamaJSON);
 				PokeDamaManager pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 				pokeDamaManager.SaveMyPokeDama (inkachu);
-				pokeDamaManager.DisplayMyPokeDama (new Vector3 (0, 0, 0));
+				SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
 				Debug.Log ("Creating new PokeDama...");
-				//SceneManager.LoadScene ("CreateScene");
+				SceneManager.LoadScene ("CreateScene");
 			}
 		}
 	}
