@@ -31,6 +31,7 @@ public class CreateGameManager : MonoBehaviour, GameManager {
 			if (successful) {
 				Debug.Log ("Successfully made inkachu!");
 				string pokeDamaJSON = jsonData.GetField ("message").str;
+				PokeDama pd = JsonUtility.FromJson<PokeDama>(pokeDamaJSON);
 				Debug.Log (pokeDamaJSON);
 			} else {
 				Debug.Log ("Failed to create your PokeDama...");
