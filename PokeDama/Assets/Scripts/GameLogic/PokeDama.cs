@@ -27,7 +27,7 @@ public class PokeDama {
 		IMEI = imei;
 		id = ID;
 		name = n;
-		maxHealth = 100 + friendliness * 0.02;
+		//maxHealth = 100 + friendliness * 0.02;
 		health = maxHealth;
 	}
 }
