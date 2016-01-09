@@ -183,7 +183,6 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-     <Compile Include="Assets\Scripts\GameLogic\AudioManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\CreateGameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MenuGameManager.cs" />

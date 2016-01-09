@@ -5,12 +5,11 @@ using System.Collections;
 public class MenuGameManager : MonoBehaviour, GameManager {
 
 	NetworkManager network;
-	PokeDamaManager pokeDamaManager;
 
 	// Use this for initialization
 	void Start () {
 		network = FindObjectOfType<NetworkManager> ();
-		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		//Debug.Log (imei);
 
@@ -26,7 +25,7 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 		
 		JSONObject jsonData = new JSONObject (data);
 
-		//Handling Server Response here
+		//Handling IMEI find Request here
 		if (jsonData.GetField ("ResponseType").str.Equals ("FindByIMEI")) {
 			bool successful = jsonData.GetField ("successful").b;
 			Debug.Log (successful);
@@ -35,7 +34,7 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 				string pokeDamaJSON = jsonData.GetField ("message").ToString();
 				Debug.Log (pokeDamaJSON);
 				PokeDama inkachu = JsonUtility.FromJson<PokeDama> (pokeDamaJSON);
-
+				PokeDamaManager pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				SceneManager.LoadScene ("PokeDamaScene");
 			} else {
