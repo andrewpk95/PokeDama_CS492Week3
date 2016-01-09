@@ -41,7 +41,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		//Debug purposes
 		network.RequestData(imei);
 
-		pokeDamaManager.SaveOpPokeDama (new PokeDama (imei, 1, "opponent"));
+		pokeDamaManager.SaveOpPokeDama (new PokeDama (imei, 2, "opponent"));
 		opPokeDama = pokeDamaManager.GetOpPokeDama ();
 		pokeDamaManager.DisplayOpPokeDama (new Vector3(1, 3, 0));
 
@@ -58,12 +58,13 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		int opDamage = 0;
 		int myDamage = 0;
 		if (isPlayerTurn) {
-			UI.SystemMessage (myPokeDama.name + " used Kick!");
+			StartCoroutine (UI.Mask ());
+			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Kick!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerKick ());
 			opDamage = 3000;
 			myDamage = 1500;
 		} else {
-			UI.SystemMessage (opPokeDama.name + " used Kick!");
+			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Kick!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentKick ());
 			opDamage = 1500;
 			myDamage = 3000;
@@ -74,18 +75,22 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.unMask ());
+		}
 	}
 
 	public void Throw() {
 		int damage = 0;
 		if (isPlayerTurn) {
-			UI.SystemMessage (myPokeDama.name + " used Throw!");
+			StartCoroutine (UI.Mask ());
+			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Throw!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerThrow ());
 			damage = 1500;
 			DamageOpponent (damage);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float)opPokeDama.health) / opPokeDama.maxHealth));
 		} else {
-			UI.SystemMessage (opPokeDama.name + " used Throw!");
+			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Throw!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentThrow ());
 			damage = 1500;
 			DamageMine (damage);
@@ -93,18 +98,22 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		}
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.unMask ());
+		}
 	}
 
 	public void Sleep() {
 		int heal = 0;
 		if (isPlayerTurn) {
-			UI.SystemMessage (myPokeDama.name + " used Sleep!");
+			StartCoroutine (UI.Mask ());
+			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Sleep!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerSleep ());
 			heal = -1000;
 			DamageMine (heal);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerHeal (((float)myPokeDama.health) / myPokeDama.maxHealth));
 		} else {
-			UI.SystemMessage (opPokeDama.name + " used Sleep!");
+			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Sleep!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentSleep ());
 			heal = -1000;
 			DamageOpponent (heal);
@@ -112,6 +121,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		}
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.unMask ());
+		}
 	}
 
 	public void Run() {

@@ -28,10 +28,10 @@ public class PokeDamaManager : MonoBehaviour {
 
 	public void DisplayMyPokeDama(Vector3 position) {
 		switch (myPokeDama.id) {
-		case 0:
+		case 1:
 			myPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
 			break;
-		case 1:
+		case 2:
 			myPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
 			break;
 		}
@@ -40,10 +40,10 @@ public class PokeDamaManager : MonoBehaviour {
 
 	public void DisplayOpPokeDama(Vector3 position) {
 		switch (opPokeDama.id) {
-		case 0:
+		case 1:
 			opPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
 			break;
-		case 1:
+		case 2:
 			opPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
 			break;
 		}
@@ -65,5 +65,13 @@ public class PokeDamaManager : MonoBehaviour {
 
 	public PokeDama GetOpPokeDama() {
 		return opPokeDama;
+	}
+
+	public bool isMyPokeDamaLoaded() {
+		return myPokeDama != null;
+	}
+
+	public bool isOpPokeDamaLoaded() {
+		return opPokeDama != null;
 	}
 }

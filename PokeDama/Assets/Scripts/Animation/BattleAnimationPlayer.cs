@@ -44,6 +44,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 
 			yield return new WaitForEndOfFrame ();
 		}
+		//Kick Animation
 		for (int i = 0; i < 10; i++) {
 			float kickspeed = 10f;
 			myPokeDama.transform.Translate (Time.deltaTime * kickspeed * (opPokeDama.transform.position - myPokeDama.transform.position));
@@ -104,6 +105,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		//Blinking Animation
 		for (int i = 0; i < 2; i++) {
 			myPokeDama.SetActive (false);
 			for (int j = 0; j < 10; j++) {
@@ -114,6 +116,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 				yield return new WaitForEndOfFrame ();
 			}
 		}
+		//Animate Healthbar change
 		while (playerHealthBar.value >= value) {
 			playerHealthBar.value -= 0.01f;
 			if (playerHealthBar.value > 1 || playerHealthBar.value < 0) { //Fail-Safe
@@ -129,6 +132,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		//Blinking Animation
 		for (int i = 0; i < 2; i++) {
 			opPokeDama.SetActive (false);
 			for (int j = 0; j < 10; j++) {
@@ -139,6 +143,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 				yield return new WaitForEndOfFrame ();
 			}
 		}
+		//Animate Healthbar change
 		while (opponentHealthBar.value >= value) {
 			opponentHealthBar.value -= 0.01f;
 			if (opponentHealthBar.value > 1 || opponentHealthBar.value < 0) { //Fail-Safe
@@ -154,6 +159,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		//Animate Healthbar change
 		while (playerHealthBar.value <= value) {
 			playerHealthBar.value += 0.01f;
 			if (playerHealthBar.value > 1 || playerHealthBar.value < 0) { //Fail-Safe
@@ -169,6 +175,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		//Animate Healthbar change
 		while (opponentHealthBar.value <= value) {
 			opponentHealthBar.value += 0.01f;
 			if (opponentHealthBar.value > 1 || opponentHealthBar.value < 0) { //Fail-Safe
