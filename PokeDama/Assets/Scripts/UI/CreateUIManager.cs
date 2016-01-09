@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CreateUIManager : MonoBehaviour {
 	
-	NetworkManager network = FindObjectOfType<NetworkManager> ();
+	NetworkManager network;
 	public GameObject inputBox;
 	UIInput uiInput;
 	string text = "";
@@ -13,7 +13,8 @@ public class CreateUIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		network = FindObjectOfType<NetworkManager> ();
+		uiInput = inputBox.GetComponent<UIInput> ();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +23,6 @@ public class CreateUIManager : MonoBehaviour {
 	}
 
 	public void getName(){
-		uiInput = inputBox.GetComponent<UIInput> ();
 		text = uiInput.label.text;
 		print (text);
 
