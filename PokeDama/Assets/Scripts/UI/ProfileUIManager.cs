@@ -27,6 +27,11 @@ public class ProfileUIManager : MonoBehaviour {
 		SceneManager.LoadScene ("MapScene");
 	}
 
+	public void OnFeedButtonClick() {
+		Debug.Log ("You just fed your PokeDama!");
+		gameManager.Feed ();
+	}
+
 	void OnEscapeKeyPress() {
 		Debug.Log ("Quitting...");
 		Application.Quit();

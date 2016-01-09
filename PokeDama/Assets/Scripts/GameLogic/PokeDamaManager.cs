@@ -36,7 +36,14 @@ public class PokeDamaManager : MonoBehaviour {
 	}
 
 	public void DisplayOpPokeDama(Vector3 position) {
-
+		switch (opPokeDama.id) {
+		case 0:
+			Instantiate (id_1, position, Quaternion.identity);
+			break;
+		case 1:
+			Instantiate (id_2, position, Quaternion.identity);
+			break;
+		}
 	}
 
 	public void SaveMyPokeDama(PokeDama pokeDama) {
