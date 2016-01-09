@@ -190,6 +190,7 @@
      <Compile Include="Assets\Scripts\GameLogic\PokeDama.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PokeDamaManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\ProfileGameManager.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\ShakeDetector.cs" />
      <Compile Include="Assets\Scripts\MapDataManager.cs" />
      <Compile Include="Assets\Scripts\MapDisplayManager.cs" />
      <Compile Include="Assets\Scripts\Message.cs" />
