@@ -16,7 +16,7 @@ public class BattleAIScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!gameManager.isPlayerTurn && !playedTurn) {
+		if (!gameManager.isPlayerTurn && !playedTurn && !gameManager.gameOver) {
 			playedTurn = true;
 			playAI ();
 		}

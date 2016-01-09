@@ -5,9 +5,22 @@ using System.Collections;
 public class BattleUIManager : MonoBehaviour {
 
 	BattleGameManager gameManager;
+	PokeDamaManager pokeDamaManager;
+
+	//UI GameObjects
+	public GameObject g_label;
+	public GameObject g_mask;
+
+	//UI Objects to manipulate
+	UILabel textBox;
+	UISprite mask;
+
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<BattleGameManager> ();
+		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+		textBox = g_label.GetComponent<UILabel> ();
+		mask = g_mask.GetComponent<UISprite> ();
 	}
 	
 	// Update is called once per frame
@@ -53,8 +66,21 @@ public class BattleUIManager : MonoBehaviour {
 		}
 	}
 
+	public void OnMaskClick() {
+		mask.depth = -10;
+	}
+
 	void OnEscapeKeyPress() {
 		Debug.Log ("You forfeit battle!");
 		gameManager.onForfeit ();
+	}
+
+	public void SystemMessage(string text) {
+		textBox.text = text;
+		//Mask ();
+	}
+
+	public void Mask() {
+		mask.depth = 10;
 	}
 }

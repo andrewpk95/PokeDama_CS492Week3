@@ -8,6 +8,9 @@ public class PokeDamaManager : MonoBehaviour {
 	PokeDama myPokeDama;
 	PokeDama opPokeDama;
 
+	public GameObject myPicture;
+	public GameObject opPicture;
+
 	public GameObject id_1;
 	public GameObject id_2;
 	// Use this for initialization
@@ -26,10 +29,10 @@ public class PokeDamaManager : MonoBehaviour {
 	public void DisplayMyPokeDama(Vector3 position) {
 		switch (myPokeDama.id) {
 		case 0:
-			Instantiate (id_1, position, Quaternion.identity);
+			myPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
 			break;
 		case 1:
-			Instantiate (id_2, position, Quaternion.identity);
+			myPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
 			break;
 		}
 
@@ -38,10 +41,10 @@ public class PokeDamaManager : MonoBehaviour {
 	public void DisplayOpPokeDama(Vector3 position) {
 		switch (opPokeDama.id) {
 		case 0:
-			Instantiate (id_1, position, Quaternion.identity);
+			opPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
 			break;
 		case 1:
-			Instantiate (id_2, position, Quaternion.identity);
+			opPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
 			break;
 		}
 	}
@@ -53,7 +56,7 @@ public class PokeDamaManager : MonoBehaviour {
 
 	public void SaveOpPokeDama(PokeDama pokeDama) {
 		opPokeDama = pokeDama;
-		Debug.Log ("Saved as: " + JsonUtility.ToJson (myPokeDama));
+		Debug.Log ("Saved as: " + JsonUtility.ToJson (opPokeDama));
 	}
 
 	public PokeDama GetMyPokeDama() {

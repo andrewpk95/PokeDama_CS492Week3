@@ -4,21 +4,39 @@ using System.Collections;
 
 public class BattleGameManager : MonoBehaviour, GameManager {
 
+	public enum BattleState {
+		Start,
+		Battle,
+		Wait,
+		Faint,
+		Result,
+		End
+	}
+
 	NetworkManager network;
+	BattleAnimationPlayer AnimationPlayer;
+	BattleUIManager UI;
 	PokeDamaManager pokeDamaManager;
-	public GameObject opponent;
+	public GameObject opponentAI;
 
 	PokeDama myPokeDama;
 	PokeDama opPokeDama;
 
+	public BattleState battleState;
 	public bool isPlayerTurn;
+	public bool gameOver;
 
 	// Use this for initialization
 	void Start () {
 		string imei = SystemInfo.deviceUniqueIdentifier;
-
 		network = FindObjectOfType<NetworkManager> ();
+		AnimationPlayer = FindObjectOfType<BattleAnimationPlayer> ();
+		UI = FindObjectOfType<BattleUIManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+
+		battleState = BattleState.Start;
+		isPlayerTurn = true;
+		gameOver = false;
 
 		//Debug purposes
 		network.RequestData(imei);
@@ -27,9 +45,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		opPokeDama = pokeDamaManager.GetOpPokeDama ();
 		pokeDamaManager.DisplayOpPokeDama (new Vector3(1, 3, 0));
 
-		isPlayerTurn = true;
+		Instantiate (opponentAI, Vector3.zero, Quaternion.identity);
 
-		Instantiate (opponent, Vector3.zero, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -41,14 +58,20 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		int opDamage = 0;
 		int myDamage = 0;
 		if (isPlayerTurn) {
-			opDamage = 2500;
-			myDamage = 500;
+			UI.SystemMessage (myPokeDama.name + " used Kick!");
+			StartCoroutine (AnimationPlayer.PlayOnPlayerKick ());
+			opDamage = 3000;
+			myDamage = 1500;
 		} else {
-			opDamage = 500;
-			myDamage = 2500;
+			UI.SystemMessage (opPokeDama.name + " used Kick!");
+			StartCoroutine (AnimationPlayer.PlayOnOpponentKick ());
+			opDamage = 1500;
+			myDamage = 3000;
 		}
 		DamageOpponent (opDamage);
 		DamageMine (myDamage);
+		StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth));
+		StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 	}
@@ -56,11 +79,17 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	public void Throw() {
 		int damage = 0;
 		if (isPlayerTurn) {
-			damage = 1000;
+			UI.SystemMessage (myPokeDama.name + " used Throw!");
+			StartCoroutine (AnimationPlayer.PlayOnPlayerThrow ());
+			damage = 1500;
 			DamageOpponent (damage);
+			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float)opPokeDama.health) / opPokeDama.maxHealth));
 		} else {
-			damage = 1000;
+			UI.SystemMessage (opPokeDama.name + " used Throw!");
+			StartCoroutine (AnimationPlayer.PlayOnOpponentThrow ());
+			damage = 1500;
 			DamageMine (damage);
+			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth));
 		}
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
@@ -69,11 +98,17 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	public void Sleep() {
 		int heal = 0;
 		if (isPlayerTurn) {
-			heal = -1500;
+			UI.SystemMessage (myPokeDama.name + " used Sleep!");
+			StartCoroutine (AnimationPlayer.PlayOnPlayerSleep ());
+			heal = -1000;
 			DamageMine (heal);
+			StartCoroutine(AnimationPlayer.PlayOnPlayerHeal (((float)myPokeDama.health) / myPokeDama.maxHealth));
 		} else {
-			heal = -1500;
+			UI.SystemMessage (opPokeDama.name + " used Sleep!");
+			StartCoroutine (AnimationPlayer.PlayOnOpponentSleep ());
+			heal = -1000;
 			DamageOpponent (heal);
+			StartCoroutine(AnimationPlayer.PlayOnOpponentHeal (((float)opPokeDama.health) / opPokeDama.maxHealth));
 		}
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
@@ -116,24 +151,28 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	void onPlayerWin() {
 		Debug.Log ("You won!");
 		//Do Something on Win
+		gameOver = true;
 		SceneManager.LoadScene ("MapScene");
 	}
 
 	void onPlayerLose() {
 		Debug.Log ("You lost...");
 		//Do Something on Lose
+		gameOver = true;
 		SceneManager.LoadScene ("PokeDamaScene");
 	}
 
 	void onPlayerDraw() {
 		Debug.Log ("It's a draw!");
 		//Do Something on Draw
+		gameOver = true;
 		SceneManager.LoadScene ("PokeDamaScene");
 	}
 
 	public void onForfeit() {
 		Debug.Log ("It's a forfeit!");
 		//Do something on Forfeit
+		gameOver = true;
 		SceneManager.LoadScene ("PokeDamaScene");
 	}
 
@@ -171,6 +210,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
 				pokeDamaManager.DisplayMyPokeDama (new Vector3(-1, 1, 0));
+				AnimationPlayer.enabled = true;
 				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
