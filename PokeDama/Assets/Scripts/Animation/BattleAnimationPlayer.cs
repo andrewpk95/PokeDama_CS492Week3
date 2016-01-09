@@ -50,7 +50,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			myPokeDama.transform.Translate (Time.deltaTime * kickspeed * (opPokeDama.transform.position - myPokeDama.transform.position));
 			yield return new WaitForEndOfFrame ();
 		}
-		myPokeDama.transform.position = new Vector3 (-1, 1, 0);
+		myPokeDama.transform.position = BattleGameManager.playerPos;
 		myPokeDama.transform.rotation = Quaternion.identity;
 		mutex = false;
 	}

@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameLogic/BattleGameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Animation/BattleAnimationPlayer.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameLogic/BattleGameManager.cs" Line="132" Column="31" />
-      <File FileName="Assets/Scripts/UI/BattleUIManager.cs" Line="50" Column="58" />
-      <File FileName="Assets/Scripts/Animation/BattleAnimationPlayer.cs" Line="47" Column="19" />
-      <File FileName="Assets/Scripts/GameLogic/PokeDamaManager.cs" Line="66" Column="35" />
+      <File FileName="Assets/Scripts/GameLogic/PokeDamaManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameLogic/BattleGameManager.cs" Line="17" Column="36" />
+      <File FileName="Assets/Scripts/UI/BattleUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Animation/BattleAnimationPlayer.cs" Line="37" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

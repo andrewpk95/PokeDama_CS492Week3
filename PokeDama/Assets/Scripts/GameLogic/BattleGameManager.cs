@@ -13,6 +13,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		End
 	}
 
+	public static Vector3 playerPos;
+	public static Vector3 opponentPos;
+
 	NetworkManager network;
 	BattleAnimationPlayer AnimationPlayer;
 	BattleUIManager UI;
@@ -28,6 +31,11 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 
 	// Use this for initialization
 	void Start () {
+		
+		//Define spawning position for PokeDama
+		playerPos = new Vector3 (-1.5f, -0.5f, 0f);
+		opponentPos = new Vector3 (1.5f, 2.5f, 0f);
+
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();
 		AnimationPlayer = FindObjectOfType<BattleAnimationPlayer> ();
@@ -43,7 +51,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 
 		pokeDamaManager.SaveOpPokeDama (new PokeDama (imei, 2, "opponent"));
 		opPokeDama = pokeDamaManager.GetOpPokeDama ();
-		pokeDamaManager.DisplayOpPokeDama (new Vector3(1, 3, 0));
+		pokeDamaManager.DisplayOpPokeDama (opponentPos);
 
 		Instantiate (opponentAI, Vector3.zero, Quaternion.identity);
 
@@ -221,7 +229,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
-				pokeDamaManager.DisplayMyPokeDama (new Vector3(-1, 1, 0));
+				pokeDamaManager.DisplayMyPokeDama (playerPos);
 				AnimationPlayer.enabled = true;
 				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
