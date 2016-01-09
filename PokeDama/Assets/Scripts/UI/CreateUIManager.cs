@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CreateUIManager : MonoBehaviour {
 	
-	NetworkManager network = FindObjectOfType<NetworkManager> ();
+	NetworkManager network;
 	public GameObject inputBox;
 	UIInput uiInput;
 	string text = "";
@@ -13,7 +13,7 @@ public class CreateUIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		network = FindObjectOfType<NetworkManager> ();
 	}
 	
 	// Update is called once per frame
@@ -30,10 +30,12 @@ public class CreateUIManager : MonoBehaviour {
 
 
 	public void OnCreateButtonClick() {
+		/*
 		if (text == "")
 			return;
 		if (ID == 0)
 			return;
+		*/
 		print (text);
 		print (ID);
 		string imei = SystemInfo.deviceUniqueIdentifier;

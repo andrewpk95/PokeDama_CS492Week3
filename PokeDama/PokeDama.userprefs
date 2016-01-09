@@ -1,14 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Network/NetworkManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameLogic/AudioManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameLogic/MenuGameManager.cs" Line="18" Column="3" />
-      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="51" Column="47" />
-      <File FileName="Assets/SocketIO/Scripts/SocketIO/SocketIOComponent.cs" Line="99" Column="4" />
-      <File FileName="Assets/Scripts/GameLogic/PokeDama.cs" Line="21" Column="21" />
-      <File FileName="Assets/Scripts/GameLogic/PokeDamaManager.cs" Line="18" Column="4" />
-      <File FileName="Assets/Scripts/UI/CreateUIManager.cs" Line="17" Column="9" />
-      <File FileName="Assets/Scripts/GameLogic/CreateGameManager.cs" Line="15" Column="81" />
+      <File FileName="Assets/Scripts/Network/NetworkManager.cs" Line="4" Column="16" />
+      <File FileName="Assets/Scripts/GameLogic/AudioManager.cs" Line="4" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
