@@ -43,6 +43,12 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 		Save (myPokeDama);
 	}
 
+	public void Feed() {
+		myPokeDama.damage (-1000);
+		myPokeDama.recalculateStat ();
+		Save (myPokeDama);
+	}
+
 	void Save(PokeDama myPokeDama) {
 		network.RequestSave (myPokeDama);
 	}

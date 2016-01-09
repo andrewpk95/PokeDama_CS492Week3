@@ -126,7 +126,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b613efe4f3e1a4884b0a6a4e26b3757a, type: 2}
-  m_RootGameObject: {fileID: 1352584192}
   m_IsPrefabParent: 0
 --- !u!1001 &835337724
 Prefab:
@@ -169,7 +168,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57428ca2a58e441b8abb2f6cf247d35c, type: 2}
-  m_RootGameObject: {fileID: 1605526091}
   m_IsPrefabParent: 0
 --- !u!1 &859406413
 GameObject:
@@ -239,7 +237,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 653a5094cea844f5ba9f9908f52997c9, type: 2}
-  m_RootGameObject: {fileID: 1735750070}
   m_IsPrefabParent: 0
 --- !u!1 &1207097237
 GameObject:
@@ -362,49 +359,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: f95e07e3d350bf748b0c42b453a69d2e, type: 2}
   mSpriteName: Beveled Outline
   mFillCenter: 1
---- !u!1 &1352584192
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 113758, guid: b613efe4f3e1a4884b0a6a4e26b3757a, type: 2}
-  m_PrefabInternal: {fileID: 300509023}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1352584194}
-  - 114: {fileID: 1352584193}
-  m_Layer: 0
-  m_Name: PokeDamaManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1352584193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11460634, guid: b613efe4f3e1a4884b0a6a4e26b3757a,
-    type: 2}
-  m_PrefabInternal: {fileID: 300509023}
-  m_GameObject: {fileID: 1352584192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdb685506786498cb0b6c287fd79dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
-  id_1: {fileID: 104134, guid: 2326feaf107c5400cb6ab15ef544008b, type: 2}
-  id_2: {fileID: 104134, guid: 2326feaf107c5400cb6ab15ef544008b, type: 2}
---- !u!4 &1352584194
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 440548, guid: b613efe4f3e1a4884b0a6a4e26b3757a, type: 2}
-  m_PrefabInternal: {fileID: 300509023}
-  m_GameObject: {fileID: 1352584192}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &1429013199
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +555,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 1940453940}
+    mMethodName: OnFeedButtonClick
+    mParameters: []
+    oneShot: 0
 --- !u!65 &1549928084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -664,94 +622,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: f95e07e3d350bf748b0c42b453a69d2e, type: 2}
   mSpriteName: Dark
   mFillCenter: 1
---- !u!1 &1605526091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 163226, guid: 57428ca2a58e441b8abb2f6cf247d35c, type: 2}
-  m_PrefabInternal: {fileID: 835337724}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1605526093}
-  - 114: {fileID: 1605526092}
-  m_Layer: 0
-  m_Name: SocketIO
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1605526092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11418462, guid: 57428ca2a58e441b8abb2f6cf247d35c,
-    type: 2}
-  m_PrefabInternal: {fileID: 835337724}
-  m_GameObject: {fileID: 1605526091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961346d7e16a445ff93777573e78efd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: ws://143.248.140.92:4000/socket.io/?EIO=4&transport=websocket
-  autoConnect: 1
-  reconnectDelay: 5
-  ackExpirationTime: 1800
-  pingInterval: 25
-  pingTimeout: 60
-  dontDestroyOnLoad: 0
---- !u!4 &1605526093
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 466834, guid: 57428ca2a58e441b8abb2f6cf247d35c, type: 2}
-  m_PrefabInternal: {fileID: 835337724}
-  m_GameObject: {fileID: 1605526091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
---- !u!1 &1735750070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 179842, guid: 653a5094cea844f5ba9f9908f52997c9, type: 2}
-  m_PrefabInternal: {fileID: 901278408}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1735750072}
-  - 114: {fileID: 1735750071}
-  m_Layer: 0
-  m_Name: Network
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1735750071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11457808, guid: 653a5094cea844f5ba9f9908f52997c9,
-    type: 2}
-  m_PrefabInternal: {fileID: 901278408}
-  m_GameObject: {fileID: 1735750070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9c50e2350e4459fb3e96cdfd30d0b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
---- !u!4 &1735750072
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 401836, guid: 653a5094cea844f5ba9f9908f52997c9, type: 2}
-  m_PrefabInternal: {fileID: 901278408}
-  m_GameObject: {fileID: 1735750070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &1940453935
 GameObject:
   m_ObjectHideFlags: 0
