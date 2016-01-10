@@ -6,6 +6,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	public static bool mutex = false;
 
 	PokeDamaManager pokeDamaManager;
+	SoundManager sound;
 
 	public GameObject g_playerHealthBar;
 	public GameObject g_HPLabel;
@@ -21,6 +22,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 
 		playerHealthBar = g_playerHealthBar.GetComponent<UIProgressBar> ();
 		HPText = g_HPLabel.GetComponent<UILabel> ();
@@ -47,6 +49,10 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Player Friendliness Animation Start");
+		//Animate Particle
+		StartCoroutine(sound.PlayOnPet());
+
+		//Animate Friendliness Increase
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		while (oldFriendliness < friendliness) {
 			oldFriendliness++;
@@ -65,6 +71,9 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Heal Animation Start");
+		//Animate Particle
+		StartCoroutine(sound.PlayOnHeal());
+
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		int healthText = 0;

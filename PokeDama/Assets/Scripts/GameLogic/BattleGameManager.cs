@@ -20,6 +20,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	NetworkManager network;
 	BattleAnimationPlayer AnimationPlayer;
 	BattleUIManager UI;
+	AudioManager audio;
 	PokeDamaManager pokeDamaManager;
 	public GameObject opponentAI;
 
@@ -45,12 +46,15 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		network = FindObjectOfType<NetworkManager> ();
 		AnimationPlayer = FindObjectOfType<BattleAnimationPlayer> ();
 		UI = FindObjectOfType<BattleUIManager> ();
+		audio = FindObjectOfType<AudioManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
 		battleState = BattleState.Start;
 		isPlayerTurn = true;
 		gameOver = false;
-
+		if (audio != null) {
+			audio.PlayBattleMusic ();
+		}
 		//Debug purposes
 		network.RequestData(imei);
 
@@ -188,6 +192,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			myPokeDama.friendliness += reward;
 			myPokeDama.recalculateStat ();
 			Save (myPokeDama);
+			if (audio != null) {
+				StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
+			}
 			StartCoroutine (UI.SystemMessage ("You successfully ran away.\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (LoadScene ("MapScene"));
@@ -231,6 +238,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		if (audio != null) {
+			StartCoroutine (AnimationPlayer.PlayVictoryMusic ());
+		}
 		StartCoroutine (UI.SystemMessage ("You won!\n" + myPokeDama.name + " got " + reward + " friendliness!"));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("MapScene"));
@@ -244,6 +254,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		if (audio != null) {
+			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
+		}
 		StartCoroutine (UI.SystemMessage ("You lost...\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("PokeDamaScene"));
@@ -257,6 +270,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		if (audio != null) {
+			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
+		}
 		StartCoroutine (UI.SystemMessage ("It's a draw!\n" + myPokeDama.name + " got " + reward + " friendliness!"));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("PokeDamaScene"));
@@ -270,6 +286,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		if (audio != null) {
+			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
+		}
 		StartCoroutine (UI.SystemMessage ("You forfeit the match...\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("PokeDamaScene"));

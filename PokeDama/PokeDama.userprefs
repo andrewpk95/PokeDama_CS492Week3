@@ -1,15 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameLogic/ProfileGameManager.cs">
-    <Files>
-      <File FileName="Assets/Scripts/GameLogic/ProfileGameManager.cs" Line="62" Column="3" />
-      <File FileName="Assets/Scripts/UI/ProfileUIManager.cs" Line="91" Column="51" />
-      <File FileName="Assets/Scripts/Animation/ProfileAnimationPlayer.cs" Line="80" Column="3" />
-      <File FileName="Assets/Scripts/Animation/BattleAnimationPlayer.cs" Line="39" Column="42" />
-      <File FileName="Assets/Scripts/UI/BattleUIManager.cs" Line="150" Column="24" />
-      <File FileName="Assets/Scripts/GameLogic/BattleGameManager.cs" Line="83" Column="124" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

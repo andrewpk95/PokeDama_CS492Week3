@@ -158,12 +158,14 @@
      <Compile Include="Assets\Scripts\GameLogic\BattleGameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\BattlePhaseScript\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\GameLogic\CreateGameManager.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\GameLogic\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\MenuGameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PokeDama.cs" />
      <Compile Include="Assets\Scripts\GameLogic\PokeDamaManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\ProfileGameManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\ShakeDetector.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\SoundManager.cs" />
      <Compile Include="Assets\Scripts\MapDataManager.cs" />
      <Compile Include="Assets\Scripts\MapDisplayManager.cs" />
      <Compile Include="Assets\Scripts\Message.cs" />

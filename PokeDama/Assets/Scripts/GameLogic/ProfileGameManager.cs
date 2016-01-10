@@ -8,6 +8,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	NetworkManager network;
 	ProfileAnimationPlayer AnimationPlayer;
 	ProfileUIManager UI;
+	AudioManager audio;
 	PokeDamaManager pokeDamaManager;
 	ShakeDetector shakeDetector;
 
@@ -22,8 +23,13 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 		network = FindObjectOfType<NetworkManager> ();
 		AnimationPlayer = FindObjectOfType<ProfileAnimationPlayer> ();
 		UI = FindObjectOfType<ProfileUIManager> ();
+		audio = FindObjectOfType<AudioManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 		shakeDetector = FindObjectOfType<ShakeDetector> ();
+
+		if (audio != null) {
+			audio.PlayMenuMusic ();
+		}
 
 		//Debug purposes;
 		network.RequestData(imei);

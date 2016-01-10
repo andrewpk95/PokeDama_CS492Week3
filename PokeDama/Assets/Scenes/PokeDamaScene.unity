@@ -745,6 +745,7 @@ GameObject:
   - 4: {fileID: 1429013200}
   - 20: {fileID: 1429013202}
   - 114: {fileID: 1429013201}
+  - 81: {fileID: 1429013203}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -838,6 +839,55 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!81 &1429013203
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429013199}
+  m_Enabled: 1
+--- !u!1001 &1516162356
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 492652, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1531729173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1090,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1905375017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,9 +1274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5ecb5660b11414fb042fb826e03b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalingStyle: 0
-  manualWidth: 1280
-  manualHeight: 720
+  scalingStyle: 2
+  manualWidth: 212
+  manualHeight: 354
   minimumHeight: 320
   maximumHeight: 1536
   fitWidth: 0
