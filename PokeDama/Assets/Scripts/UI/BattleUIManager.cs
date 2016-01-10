@@ -5,6 +5,7 @@ using System.Collections;
 public class BattleUIManager : MonoBehaviour {
 
 	BattleGameManager gameManager;
+	SoundManager sound;
 	PokeDamaManager pokeDamaManager;
 
 	//UI GameObjects
@@ -38,6 +39,7 @@ public class BattleUIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<BattleGameManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
 		//Loading PokeDama information to UI
@@ -96,6 +98,7 @@ public class BattleUIManager : MonoBehaviour {
 	public void OnKickButtonClick() {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed Kick command!");
+			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Kick ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
@@ -105,6 +108,7 @@ public class BattleUIManager : MonoBehaviour {
 	public void On110VButtonClick() {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed 110V command!");
+			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Lightning ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
@@ -114,6 +118,7 @@ public class BattleUIManager : MonoBehaviour {
 	public void OnThrowButtonClick() {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed Throw command!");
+			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Throw ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
@@ -123,6 +128,7 @@ public class BattleUIManager : MonoBehaviour {
 	public void OnSleepButtonClick() {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed Sleep command!");
+			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Sleep ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
@@ -132,6 +138,7 @@ public class BattleUIManager : MonoBehaviour {
 	public void OnRunButtonClick() {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed Run command!");
+			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Run ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
@@ -140,6 +147,7 @@ public class BattleUIManager : MonoBehaviour {
 
 	public void OnMaskClick() {
 		clickMask.depth = -20;
+		StartCoroutine (sound.PlayOnTouch ());
 	}
 
 	void OnEscapeKeyPress() {

@@ -6,6 +6,8 @@ public class BattleAnimationPlayer : MonoBehaviour {
 	public static bool mutex = false;
 
 	PokeDamaManager pokeDamaManager;
+	AudioManager audio;
+	SoundManager sound;
 
 	public GameObject g_playerHealthBar;
 	public GameObject g_opponentHealthBar;
@@ -29,6 +31,8 @@ public class BattleAnimationPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+		audio = FindObjectOfType<AudioManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 
 		playerHealthBar = g_playerHealthBar.GetComponent<UIProgressBar> ();
 		opponentHealthBar = g_opponentHealthBar.GetComponent<UIProgressBar> ();
@@ -64,6 +68,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			myPokeDama.transform.position += kickspeed * (opPokeDama.transform.position - myPokeDama.transform.position) * Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+		StartCoroutine (sound.PlayOnHit ());
 		StartCoroutine (Rotate (opPokeDama, 2, 1500f));
 		//Return Animation
 		for (int i = 0; i < 30; i++) {
@@ -96,6 +101,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			opPokeDama.transform.position += kickspeed * (myPokeDama.transform.position - opPokeDama.transform.position) * Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+		StartCoroutine (sound.PlayOnHit ());
 		StartCoroutine (RotateLeft (myPokeDama, 2, 1500f));
 		//Return Animation
 		for (int i = 0; i < 30; i++) {
@@ -173,12 +179,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		//Soju Throw Animation
+		StartCoroutine(sound.PlayOnThrow());
 		StartCoroutine(Rotate(soju, 2, 1440f));
 		float throwSpeed = 10f;
 		for (int i = 0; i < 15; i++) {
 			soju.transform.position += throwSpeed * (opPokeDama.transform.position - myPokeDama.transform.position) * Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+		StartCoroutine (sound.PlayOnHit ());
 		yield return StartCoroutine (Rotate (opPokeDama, 2, 1440f));
 		//Destroy Effects
 		Destroy (soju);
@@ -201,12 +209,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		//Soju Throw Animation
+		StartCoroutine(sound.PlayOnThrow());
 		StartCoroutine(RotateLeft(soju, 2, 1440f));
 		float throwSpeed = 10f;
 		for (int i = 0; i < 15; i++) {
 			soju.transform.position += throwSpeed * (myPokeDama.transform.position - opPokeDama.transform.position) * Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
+		StartCoroutine (sound.PlayOnHit ());
 		yield return StartCoroutine (RotateLeft (myPokeDama, 2, 1440f));
 		//Destroy Effects
 		Destroy (soju);
@@ -221,6 +231,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Player Sleep Animation Start");
 		//ZZZ Spawn Animation
+		StartCoroutine(sound.PlayOnSleep());
 		GameObject zzz = (GameObject) Instantiate (g_zzz, BattleGameManager.playerPos, Quaternion.identity);
 		Vector3 moveTo = new Vector3 (0, 1, 0);
 		moveTo += BattleGameManager.playerPos;
@@ -259,6 +270,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Opponent Sleep Animation Start");
 		//ZZZ Spawn Animation
+		StartCoroutine(sound.PlayOnSleep());
 		GameObject zzz = (GameObject) Instantiate (g_zzz, BattleGameManager.opponentPos, Quaternion.identity);
 		Vector3 moveTo = new Vector3 (0, 1, 0);
 		moveTo += BattleGameManager.opponentPos;
@@ -297,13 +309,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Player Damaged Animation Start");
 		//Blinking Animation
+		StartCoroutine(sound.PlayOnDamaged());
 		for (int i = 0; i < 2; i++) {
 			myPokeDama.SetActive (false);
-			for (int j = 0; j < 10; j++) {
+			for (int j = 0; j < 5; j++) {
 				yield return new WaitForEndOfFrame ();
 			}
 			myPokeDama.SetActive (true);
-			for (int j = 0; j < 10; j++) {
+			for (int j = 0; j < 5; j++) {
 				yield return new WaitForEndOfFrame ();
 			}
 		}
@@ -332,13 +345,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Opponent Damaged Animation Start");
 		//Blinking Animation
+		StartCoroutine(sound.PlayOnDamaged());
 		for (int i = 0; i < 2; i++) {
 			opPokeDama.SetActive (false);
-			for (int j = 0; j < 10; j++) {
+			for (int j = 0; j < 5; j++) {
 				yield return new WaitForEndOfFrame ();
 			}
 			opPokeDama.SetActive (true);
-			for (int j = 0; j < 10; j++) {
+			for (int j = 0; j < 5; j++) {
 				yield return new WaitForEndOfFrame ();
 			}
 		}
@@ -366,6 +380,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Player Heal Animation Start");
+		StartCoroutine (sound.PlayOnHeal ());
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		int healthText = 0;
@@ -390,6 +405,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Opponent Heal Animation Start");
+		StartCoroutine (sound.PlayOnHeal ());
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetOpPokeDama ();
 		int healthText = 0;
@@ -414,6 +430,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Player Faint Animation Start");
+		StartCoroutine (sound.PlayOnFaint ());
 
 		Debug.Log ("Player Faint Animation Done");
 		mutex = false;
@@ -425,8 +442,31 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Opponent Faint Animation Start");
+		StartCoroutine (sound.PlayOnFaint ());
 
 		Debug.Log ("Opponent Faint Animation Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayVictoryMusic() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Victory Music Start");
+		audio.PlayVictoryMusic ();
+		Debug.Log ("Victory Music Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayDefeatMusic() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Defeat Music Start");
+		audio.PlayDefeatMusic ();
+		Debug.Log ("Defeat Music Done");
 		mutex = false;
 	}
 

@@ -51,9 +51,18 @@ public class PokeDama {
 	}
 		
 	public void calculateStat() {
+		//Recalculate friendliness
+		if (friendliness < 0) {
+			friendliness = 0;
+		}
 		//Recalculate max health
 		maxHealth = 10000 + friendliness * 2;
-
+		//Recalculate health
+		if (health <= 0) { //Health reached below 0
+			health = 0;
+		} else if (health > maxHealth) { //Health went above max health
+			health = maxHealth;
+		}
 		//Recalculate level
 		if (level <= 0) {
 			level = 1;
