@@ -10,12 +10,19 @@ public class BattleUIManager : MonoBehaviour {
 	//UI GameObjects
 	public GameObject g_label;
 	public GameObject g_mask;
+	public GameObject g_clickMask;
 	public GameObject g_playerNameLabel;
 	public GameObject g_opponentNameLabel;
 	public GameObject g_playerLevelLabel;
 	public GameObject g_opponentLevelLabel;
 	public GameObject g_playerHPLabel;
 	public GameObject g_opponentHPLabel;
+
+	public GameObject KickButton;
+	public GameObject LightningButton;
+	public GameObject ThrowButton;
+	public GameObject SleepButton;
+	public GameObject RunButton;
 
 	//UI Objects to manipulate
 	UILabel textBox;
@@ -26,12 +33,14 @@ public class BattleUIManager : MonoBehaviour {
 	UILabel playerHPText;
 	UILabel opponentHPText;
 	UISprite mask;
+	UISprite clickMask;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<BattleGameManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
+		//Loading PokeDama information to UI
 		textBox = g_label.GetComponent<UILabel> ();
 		playerNameText = g_playerNameLabel.GetComponent<UILabel> ();
 		opponentNameText = g_opponentNameLabel.GetComponent<UILabel> ();
@@ -40,7 +49,11 @@ public class BattleUIManager : MonoBehaviour {
 		playerHPText = g_playerHPLabel.GetComponent<UILabel> ();
 		opponentHPText = g_opponentHPLabel.GetComponent<UILabel> ();
 		mask = g_mask.GetComponent<UISprite> ();
+		clickMask = g_clickMask.GetComponent<UISprite> ();
 		StartCoroutine (LoadText ());
+
+		//Loading Buttons
+		StartCoroutine(LoadButton());
 	}
 
 	IEnumerator LoadText() {
@@ -56,6 +69,22 @@ public class BattleUIManager : MonoBehaviour {
 		playerHPText.text = myPokeDama.health.ToString() + "/" + myPokeDama.maxHealth.ToString();
 		opponentHPText.text = opPokeDama.health.ToString() + "/" + opPokeDama.maxHealth.ToString();
 	}
+
+	IEnumerator LoadButton() {
+		while (!pokeDamaManager.isMyPokeDamaLoaded () || !pokeDamaManager.isOpPokeDamaLoaded()) {
+			yield return null;
+		}
+		if (pokeDamaManager.GetMyPokeDama ().id == 1) {
+			LightningButton.SetActive (true);
+			ThrowButton.SetActive (true);
+			SleepButton.SetActive (true);
+		} else if (pokeDamaManager.GetMyPokeDama ().id == 2) {
+			KickButton.SetActive (true);
+			ThrowButton.SetActive (true);
+			SleepButton.SetActive (true);
+		}
+		RunButton.SetActive (true);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -68,6 +97,15 @@ public class BattleUIManager : MonoBehaviour {
 		if (gameManager.isPlayerTurn) {
 			Debug.Log ("You pressed Kick command!");
 			gameManager.Kick ();
+		} else {
+			Debug.Log ("It's not your turn yet!");
+		}
+	}
+
+	public void On110VButtonClick() {
+		if (gameManager.isPlayerTurn) {
+			Debug.Log ("You pressed 110V command!");
+			gameManager.Lightning ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
 		}
@@ -101,7 +139,7 @@ public class BattleUIManager : MonoBehaviour {
 	}
 
 	public void OnMaskClick() {
-		//mask.depth = -10;
+		clickMask.depth = -20;
 	}
 
 	void OnEscapeKeyPress() {
@@ -133,6 +171,18 @@ public class BattleUIManager : MonoBehaviour {
 		}
 		BattleAnimationPlayer.mutex = true;
 		mask.depth = -10;
+		BattleAnimationPlayer.mutex = false;
+	}
+		
+	public IEnumerator clickableMask() {
+		while (BattleAnimationPlayer.mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		BattleAnimationPlayer.mutex = true;
+		clickMask.depth = 20;
+		while (clickMask.depth > 0) {
+			yield return new WaitForEndOfFrame ();
+		}
 		BattleAnimationPlayer.mutex = false;
 	}
 }

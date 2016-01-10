@@ -39,12 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3348423777
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: PokeDama
     uniqueID: 1147997445
     locked: 0
-  - name: Background
-    uniqueID: 3348423777
+  - name: Effects
+    uniqueID: 2865097489
     locked: 0
