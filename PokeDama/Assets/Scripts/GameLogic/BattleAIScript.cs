@@ -4,13 +4,14 @@ using System.Collections;
 public class BattleAIScript : MonoBehaviour {
 
 	BattleGameManager gameManager;
+	PokeDamaManager pokeDamaManager;
 
 	bool playedTurn;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<BattleGameManager> ();
-
+		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 		playedTurn = false;
 	}
 	
@@ -26,19 +27,36 @@ public class BattleAIScript : MonoBehaviour {
 	void playAI() {
 		int random = (int) Random.Range (0, 3);
 		Debug.Log (random);
-		switch (random) {
-		case 0:
-			OnKick ();
-			break;
-		case 1:
-			OnThrow ();
-			break;
-		case 2:
-			OnSleep ();
-			break;
-		default: 
-			OnKick ();
-			break;
+		if (pokeDamaManager.GetOpPokeDama ().id == 1) {
+			switch (random) {
+			case 0:
+				On110V ();
+				break;
+			case 1:
+				OnThrow ();
+				break;
+			case 2:
+				OnSleep ();
+				break;
+			default: 
+				On110V ();
+				break;
+			}
+		} else if (pokeDamaManager.GetOpPokeDama ().id == 2) {
+			switch (random) {
+			case 0:
+				OnKick ();
+				break;
+			case 1:
+				OnThrow ();
+				break;
+			case 2:
+				OnSleep ();
+				break;
+			default: 
+				OnKick ();
+				break;
+			}
 		}
 		playedTurn = false;
 	}
@@ -46,6 +64,11 @@ public class BattleAIScript : MonoBehaviour {
 	void OnKick() {
 		Debug.Log ("Opponent pressed Kick command!");
 		gameManager.Kick ();
+	}
+
+	void On110V() {
+		Debug.Log ("Opponent pressed 110V command!");
+		gameManager.Lightning ();
 	}
 
 	void OnThrow() {

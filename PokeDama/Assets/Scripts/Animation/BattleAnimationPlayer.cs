@@ -10,8 +10,18 @@ public class BattleAnimationPlayer : MonoBehaviour {
 	public GameObject g_playerHealthBar;
 	public GameObject g_opponentHealthBar;
 
+	public GameObject g_playerHPText;
+	public GameObject g_opponentHPText;
+
+	public GameObject g_110V;
+	public GameObject g_lightning;
+	public GameObject g_soju;
+	public GameObject g_zzz;
+
 	UIProgressBar playerHealthBar;
 	UIProgressBar opponentHealthBar;
+	UILabel playerHPText;
+	UILabel opponentHPText;
 
 	public GameObject myPokeDama;
 	public GameObject opPokeDama;
@@ -22,6 +32,8 @@ public class BattleAnimationPlayer : MonoBehaviour {
 
 		playerHealthBar = g_playerHealthBar.GetComponent<UIProgressBar> ();
 		opponentHealthBar = g_opponentHealthBar.GetComponent<UIProgressBar> ();
+		playerHPText = g_playerHPText.GetComponent<UILabel> ();
+		opponentHPText = g_opponentHPText.GetComponent<UILabel> ();
 
 		myPokeDama = pokeDamaManager.myPicture;
 		opPokeDama = pokeDamaManager.opPicture;
@@ -37,21 +49,30 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Player Kick Animation Start");
 		//Retract Animation
+		float angleStep = 5f;
 		for (int i = 0; i < 30; i++) {
-			float angleStep = Mathf.Lerp (0f, 5f, 0.5f);
+			angleStep = Mathf.Lerp (angleStep, 0f, 0.1f);
 			myPokeDama.transform.Rotate(Vector3.forward, angleStep);
 
 			yield return new WaitForEndOfFrame ();
 		}
 		//Kick Animation
+		float kickspeed = 10f;
 		for (int i = 0; i < 10; i++) {
-			float kickspeed = 10f;
-			myPokeDama.transform.Translate (Time.deltaTime * kickspeed * (opPokeDama.transform.position - myPokeDama.transform.position));
+			myPokeDama.transform.position += kickspeed * (opPokeDama.transform.position - myPokeDama.transform.position) * Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+		StartCoroutine (Rotate (opPokeDama, 2, 1500f));
+		//Return Animation
+		for (int i = 0; i < 30; i++) {
+			myPokeDama.transform.position = Vector3.Lerp (myPokeDama.transform.position, BattleGameManager.playerPos, 0.1f);
 			yield return new WaitForEndOfFrame ();
 		}
 		myPokeDama.transform.position = BattleGameManager.playerPos;
 		myPokeDama.transform.rotation = Quaternion.identity;
+		Debug.Log ("Player Kick Animation Done");
 		mutex = false;
 	}
 
@@ -60,7 +81,80 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Opponent Kick Animation Start");
+		//Retract Animation
+		float angleStep = 5f;
+		for (int i = 0; i < 30; i++) {
+			angleStep = Mathf.Lerp (angleStep, 0f, 0.1f);
+			opPokeDama.transform.Rotate(Vector3.forward, angleStep);
 
+			yield return new WaitForEndOfFrame ();
+		}
+		//Kick Animation
+		float kickspeed = 10f;
+		for (int i = 0; i < 10; i++) {
+			opPokeDama.transform.position += kickspeed * (myPokeDama.transform.position - opPokeDama.transform.position) * Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+		StartCoroutine (RotateLeft (myPokeDama, 2, 1500f));
+		//Return Animation
+		for (int i = 0; i < 30; i++) {
+			opPokeDama.transform.position = Vector3.Lerp (opPokeDama.transform.position, BattleGameManager.opponentPos, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		opPokeDama.transform.position = BattleGameManager.opponentPos;
+		opPokeDama.transform.rotation = Quaternion.identity;
+		Debug.Log ("Opponent Kick Animation Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayOnPlayer110V() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Player 110V Animation Start");
+		//Plug Animation
+		GameObject plug = (GameObject) Instantiate(g_110V, BattleGameManager.playerPos, Quaternion.identity);
+		for (int i = 0; i < 30; i++) {
+			plug.transform.position = Vector3.Lerp (plug.transform.position, BattleGameManager.centerPos, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//Lightning Animation
+		GameObject lightning = (GameObject) Instantiate(g_lightning, BattleGameManager.centerPos, Quaternion.identity);
+		lightning.transform.Rotate (new Vector3 (0, 0, -60));
+		for (int i = 0; i < 60; i++) {
+			yield return new WaitForEndOfFrame ();
+		}
+		//Destroy Effects
+		Destroy (plug);
+		Destroy (lightning);
+		Debug.Log ("Player 110V Animation Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayOnOpponent110V() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Opponent 110V Animation Start");
+		//Plug Animation
+		GameObject plug = (GameObject) Instantiate(g_110V, BattleGameManager.opponentPos, Quaternion.identity);
+		for (int i = 0; i < 30; i++) {
+			plug.transform.position = Vector3.Lerp (plug.transform.position, BattleGameManager.centerPos, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//Lightning Animation
+		GameObject lightning = (GameObject) Instantiate(g_lightning, BattleGameManager.centerPos, Quaternion.identity);
+		lightning.transform.Rotate (new Vector3 (0, 0, -60));
+		for (int i = 0; i < 60; i++) {
+			yield return new WaitForEndOfFrame ();
+		}
+		//Destroy Effects
+		Destroy (plug);
+		Destroy (lightning);
+		Debug.Log ("Opponent 110V Animation Done");
 		mutex = false;
 	}
 
@@ -69,7 +163,26 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
-
+		Debug.Log ("Player Throw Animation Start");
+		//Soju Spawn Animation
+		GameObject soju = (GameObject) Instantiate(g_soju, BattleGameManager.playerPos, Quaternion.identity);
+		Vector3 moveTo = new Vector3 (0, 1, 0);
+		moveTo += BattleGameManager.playerPos;
+		for (int i = 0; i < 30; i++) {
+			soju.transform.position = Vector3.Lerp (soju.transform.position, moveTo, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//Soju Throw Animation
+		StartCoroutine(Rotate(soju, 2, 1440f));
+		float throwSpeed = 10f;
+		for (int i = 0; i < 15; i++) {
+			soju.transform.position += throwSpeed * (opPokeDama.transform.position - myPokeDama.transform.position) * Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+		yield return StartCoroutine (Rotate (opPokeDama, 2, 1440f));
+		//Destroy Effects
+		Destroy (soju);
+		Debug.Log ("Player Throw Animation Done");
 		mutex = false;
 	}
 
@@ -78,7 +191,26 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
-
+		Debug.Log ("Opponent Throw Animation Start");
+		//Soju Spawn Animation
+		GameObject soju = (GameObject) Instantiate(g_soju, BattleGameManager.opponentPos, Quaternion.identity);
+		Vector3 moveTo = new Vector3 (0, 1, 0);
+		moveTo += BattleGameManager.opponentPos;
+		for (int i = 0; i < 30; i++) {
+			soju.transform.position = Vector3.Lerp (soju.transform.position, moveTo, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//Soju Throw Animation
+		StartCoroutine(RotateLeft(soju, 2, 1440f));
+		float throwSpeed = 10f;
+		for (int i = 0; i < 15; i++) {
+			soju.transform.position += throwSpeed * (myPokeDama.transform.position - opPokeDama.transform.position) * Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+		yield return StartCoroutine (RotateLeft (myPokeDama, 2, 1440f));
+		//Destroy Effects
+		Destroy (soju);
+		Debug.Log ("Opponent Throw Animation Done");
 		mutex = false;
 	}
 
@@ -87,7 +219,36 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
-
+		Debug.Log ("Player Sleep Animation Start");
+		//ZZZ Spawn Animation
+		GameObject zzz = (GameObject) Instantiate (g_zzz, BattleGameManager.playerPos, Quaternion.identity);
+		Vector3 moveTo = new Vector3 (0, 1, 0);
+		moveTo += BattleGameManager.playerPos;
+		for (int i = 0; i < 30; i++) {
+			zzz.transform.position = Vector3.Lerp (zzz.transform.position, moveTo, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//ZZZ Move Animation
+		for (int i = 0; i < 20; i++) {
+			if (i % 5 == 0) {
+				zzz.transform.Rotate (Vector3.up, 180f);
+			}
+			yield return new WaitForEndOfFrame ();
+		}
+		//PokeDama Jump Animation
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 10; j++) {
+				myPokeDama.transform.position = Vector3.Lerp (myPokeDama.transform.position, moveTo, 0.1f);
+				yield return new WaitForEndOfFrame ();
+			}
+			for (int j = 0; j < 10; j++) {
+				myPokeDama.transform.position = Vector3.Lerp (myPokeDama.transform.position, BattleGameManager.playerPos, 0.1f);
+				yield return new WaitForEndOfFrame ();
+			}
+		}
+		//Destroy Effects
+		Destroy (zzz);
+		Debug.Log ("Player Sleep Animation Done");
 		mutex = false;
 	}
 
@@ -96,15 +257,45 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
-
+		Debug.Log ("Opponent Sleep Animation Start");
+		//ZZZ Spawn Animation
+		GameObject zzz = (GameObject) Instantiate (g_zzz, BattleGameManager.opponentPos, Quaternion.identity);
+		Vector3 moveTo = new Vector3 (0, 1, 0);
+		moveTo += BattleGameManager.opponentPos;
+		for (int i = 0; i < 30; i++) {
+			zzz.transform.position = Vector3.Lerp (zzz.transform.position, moveTo, 0.1f);
+			yield return new WaitForEndOfFrame ();
+		}
+		//ZZZ Move Animation
+		for (int i = 0; i < 20; i++) {
+			if (i % 5 == 0) {
+				zzz.transform.Rotate (Vector3.up, 180f);
+			}
+			yield return new WaitForEndOfFrame ();
+		}
+		//PokeDama Jump Animation
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 10; j++) {
+				opPokeDama.transform.position = Vector3.Lerp (opPokeDama.transform.position, moveTo, 0.1f);
+				yield return new WaitForEndOfFrame ();
+			}
+			for (int j = 0; j < 10; j++) {
+				opPokeDama.transform.position = Vector3.Lerp (opPokeDama.transform.position, BattleGameManager.opponentPos, 0.1f);
+				yield return new WaitForEndOfFrame ();
+			}
+		}
+		//Destroy Effects
+		Destroy (zzz);
+		Debug.Log ("Player Sleep Animation Done");
 		mutex = false;
 	}
 
-	public IEnumerator PlayOnPlayerDamaged(float value) {
+	public IEnumerator PlayOnPlayerDamaged(float value, int health) {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Player Damaged Animation Start");
 		//Blinking Animation
 		for (int i = 0; i < 2; i++) {
 			myPokeDama.SetActive (false);
@@ -117,21 +308,29 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			}
 		}
 		//Animate Healthbar change
+		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
+		int healthText = 0;
 		while (playerHealthBar.value >= value) {
 			playerHealthBar.value -= 0.01f;
-			if (playerHealthBar.value > 1 || playerHealthBar.value < 0) { //Fail-Safe
+			if (playerHealthBar.value >= 1 || playerHealthBar.value <= 0) { //Fail-Safe
 				break;
 			}
+			healthText = (int) (playerHealthBar.value * pk.maxHealth);
+			playerHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
+		if (healthText < health)
+			playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		Debug.Log ("Player Damaged Animation Done");
 		mutex = false;
 	}
 
-	public IEnumerator PlayOnOpponentDamaged(float value) {
+	public IEnumerator PlayOnOpponentDamaged(float value, int health) {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Opponent Damaged Animation Start");
 		//Blinking Animation
 		for (int i = 0; i < 2; i++) {
 			opPokeDama.SetActive (false);
@@ -144,45 +343,116 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			}
 		}
 		//Animate Healthbar change
+		PokeDama pk = pokeDamaManager.GetOpPokeDama ();
+		int healthText = 0;
 		while (opponentHealthBar.value >= value) {
 			opponentHealthBar.value -= 0.01f;
-			if (opponentHealthBar.value > 1 || opponentHealthBar.value < 0) { //Fail-Safe
+			if (opponentHealthBar.value >= 1 || opponentHealthBar.value <= 0) {
 				break;
 			}
+			healthText = (int) (opponentHealthBar.value * pk.maxHealth);
+			opponentHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
+		if (healthText < health)
+			opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		Debug.Log ("Opponent Damaged Animation Done");
 		mutex = false;
 	}
 
-	public IEnumerator PlayOnPlayerHeal(float value) {
+	public IEnumerator PlayOnPlayerHeal(float value, int health) {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Player Heal Animation Start");
 		//Animate Healthbar change
+		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
+		int healthText = 0;
 		while (playerHealthBar.value <= value) {
 			playerHealthBar.value += 0.01f;
-			if (playerHealthBar.value > 1 || playerHealthBar.value < 0) { //Fail-Safe
+			if (playerHealthBar.value >= 1 || playerHealthBar.value <= 0) { //Fail-Safe
 				break;
 			}
+			healthText = (int) (playerHealthBar.value * pk.maxHealth);
+			playerHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
+		if (healthText > health) 
+			playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		Debug.Log ("Player Heal Animation Done");
 		mutex = false;
 	}
 
-	public IEnumerator PlayOnOpponentHeal(float value) {
+	public IEnumerator PlayOnOpponentHeal(float value, int health) {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
 		mutex = true;
+		Debug.Log ("Opponent Heal Animation Start");
 		//Animate Healthbar change
+		PokeDama pk = pokeDamaManager.GetOpPokeDama ();
+		int healthText = 0;
 		while (opponentHealthBar.value <= value) {
 			opponentHealthBar.value += 0.01f;
-			if (opponentHealthBar.value > 1 || opponentHealthBar.value < 0) { //Fail-Safe
+			if (opponentHealthBar.value >= 1 || opponentHealthBar.value <= 0) { //Fail-Safe
 				break;
 			}
+			healthText = (int) (opponentHealthBar.value * pk.maxHealth);
+			opponentHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
+		if (healthText > health)
+			opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		Debug.Log ("Opponent Heal Animation Done");
 		mutex = false;
+	}
+
+	public IEnumerator PlayOnPlayerFaint() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Player Faint Animation Start");
+
+		Debug.Log ("Player Faint Animation Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayOnOpponentFaint() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Opponent Faint Animation Start");
+
+		Debug.Log ("Opponent Faint Animation Done");
+		mutex = false;
+	}
+
+	IEnumerator Rotate(GameObject obj, int count, float speed) {
+		float degree = (float)count * 360f;
+		while (degree > 0) {
+			degree -= speed * Time.deltaTime;
+			if (degree < 0) {
+				obj.transform.rotation = Quaternion.identity;
+				break;
+			}
+			obj.transform.Rotate (Vector3.forward, speed * Time.deltaTime);
+			yield return null;
+		}
+	}
+
+	IEnumerator RotateLeft(GameObject obj, int count, float speed) {
+		float degree = (float)count * 360f;
+		while (degree > 0) {
+			degree -= speed * Time.deltaTime;
+			if (degree < 0) {
+				obj.transform.rotation = Quaternion.identity;
+				break;
+			}
+			obj.transform.Rotate (Vector3.forward, -speed * Time.deltaTime);
+			yield return null;
+		}
 	}
 }
