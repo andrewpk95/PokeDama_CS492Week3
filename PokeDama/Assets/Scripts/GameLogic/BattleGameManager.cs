@@ -180,12 +180,15 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	}
 
 	public void Run() {
-		if (true) {
+		float random = Random.value;
+		if (random < 0.7) {
 			Debug.Log ("Successfully ran away!");
 			gameOver = true;
+			int reward = -50;
+			myPokeDama.friendliness += reward;
 			myPokeDama.recalculateStat ();
 			Save (myPokeDama);
-			StartCoroutine (UI.SystemMessage ("You successfully ran away!"));
+			StartCoroutine (UI.SystemMessage ("You successfully ran away.\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (LoadScene ("MapScene"));
 		} else {
@@ -224,7 +227,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		Debug.Log ("You won!");
 		//Do Something on Win
 		gameOver = true;
-		int reward = 10;
+		int reward = 200;
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
@@ -237,11 +240,11 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		Debug.Log ("You lost...");
 		//Do Something on Lose
 		gameOver = true;
-		int reward = 2;
+		int reward = -50;
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
-		StartCoroutine (UI.SystemMessage ("You lost...\n" + myPokeDama.name + " got " + reward + " friendliness!"));
+		StartCoroutine (UI.SystemMessage ("You lost...\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("PokeDamaScene"));
 	}
@@ -250,7 +253,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		Debug.Log ("It's a draw!");
 		//Do Something on Draw
 		gameOver = true;
-		int reward = 5;
+		int reward = 100;
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
@@ -263,9 +266,11 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		Debug.Log ("It's a forfeit!");
 		//Do something on Forfeit
 		gameOver = true;
+		int reward = -100;
+		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
-		StartCoroutine (UI.SystemMessage ("You forfeit the match..."));
+		StartCoroutine (UI.SystemMessage ("You forfeit the match...\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
 		StartCoroutine (UI.clickableMask ());
 		StartCoroutine (LoadScene ("PokeDamaScene"));
 	}

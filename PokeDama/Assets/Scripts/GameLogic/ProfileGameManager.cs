@@ -3,7 +3,11 @@ using System.Collections;
 
 public class ProfileGameManager : MonoBehaviour, GameManager {
 
+	public static Vector3 spawnPos;
+
 	NetworkManager network;
+	ProfileAnimationPlayer AnimationPlayer;
+	ProfileUIManager UI;
 	PokeDamaManager pokeDamaManager;
 	ShakeDetector shakeDetector;
 
@@ -11,16 +15,18 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 
 	// Use this for initialization
 	void Start () {
-		string imei = SystemInfo.deviceUniqueIdentifier;
+		//Define spawning position for PokeDama
+		spawnPos = new Vector3(0f, 1f, 0f);
 
+		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();
+		AnimationPlayer = FindObjectOfType<ProfileAnimationPlayer> ();
+		UI = FindObjectOfType<ProfileUIManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 		shakeDetector = FindObjectOfType<ShakeDetector> ();
 
-		//Debug purposes
-		//pokeDamaManager.SaveMyPokeDama (new PokeDama (imei, 1, "inkachu"));
+		//Debug purposes;
 		network.RequestData(imei);
-		//myPokeDama = pokeDamaManager.GetMyPokeDama ();
 	}
 	
 	// Update is called once per frame
@@ -32,21 +38,33 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	}
 
 	public void Pet() {
+		UI.EraseAllMessage ();
+		UI.SystemMessage ("You just pet " + myPokeDama.name + "!", 3);
 		myPokeDama.friendliness += 2;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (AnimationPlayer.PlayOnFriendliness (myPokeDama.friendliness));
+		UI.UIUpdate ();
 	}
 
 	public void Exercise() {
+		UI.EraseAllMessage ();
+		UI.SystemMessage ("You just exercised " + myPokeDama.name + "!", 3);
 		myPokeDama.friendliness += 10;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (AnimationPlayer.PlayOnFriendliness (myPokeDama.friendliness));
+		UI.UIUpdate ();
 	}
 
 	public void Feed() {
+		UI.EraseAllMessage ();
+		UI.SystemMessage ("You just fed " + myPokeDama.name + "!", 3);
 		myPokeDama.damage (-1000);
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (AnimationPlayer.PlayOnHeal (((float) myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
+		UI.UIUpdate ();
 	}
 
 	void Save(PokeDama myPokeDama) {
@@ -82,7 +100,10 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
-				pokeDamaManager.DisplayMyPokeDama (new Vector3(0, 2, 0));
+				pokeDamaManager.DisplayMyPokeDama (spawnPos);
+
+				AnimationPlayer.enabled = true;
+				UI.enabled = true;
 				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
