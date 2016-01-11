@@ -14,7 +14,7 @@ public class ShakeDetector : MonoBehaviour
 	int countNeg;
 	int lastPeak;
 	int firstPeak;
-	bool counting;
+	public bool counting;
 	float timer;
 
 	// Use this for initialization

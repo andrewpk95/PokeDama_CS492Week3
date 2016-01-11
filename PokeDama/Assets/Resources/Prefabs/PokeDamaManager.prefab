@@ -45,7 +45,7 @@ MonoBehaviour:
   id_1: {fileID: 107694, guid: 0903522efd72641daba26a60281eb26b, type: 2}
   id_2: {fileID: 184848, guid: 4a31fc39b1f64425fbfd911838a94d09, type: 2}
   id_1_Battle: {fileID: 185774, guid: 549fa64dddc4740c29ab8566d476b449, type: 2}
-  id_2_Battle: {fileID: 155862, guid: 3167d9646caff4fa9bec401803b26c2a, type: 2}
+  id_2_Battle: {fileID: 179166, guid: 7f50d67468fa9470d8efb814bd33351b, type: 2}
   id_1_Opponent: {fileID: 147660, guid: 9e0d44ef846794974b06f4ff6732da91, type: 2}
   id_2_Opponent: {fileID: 167062, guid: 09b30f0765ab14537ae2cdaf879b966a, type: 2}
 --- !u!1001 &100100000
@@ -71,6 +71,10 @@ Prefab:
       propertyPath: id_2
       value: 
       objectReference: {fileID: 184848, guid: 4a31fc39b1f64425fbfd911838a94d09, type: 2}
+    - target: {fileID: 0}
+      propertyPath: id_2_Battle
+      value: 
+      objectReference: {fileID: 179166, guid: 7f50d67468fa9470d8efb814bd33351b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 172052}

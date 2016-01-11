@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CreateGameManager : MonoBehaviour, GameManager {
@@ -29,10 +30,11 @@ public class CreateGameManager : MonoBehaviour, GameManager {
 			bool successful = jsonData.GetField ("successful").b;
 			Debug.Log (successful);
 			if (successful) {
-				Debug.Log ("Successfully made inkachu!");
+				Debug.Log ("Successfully made PokeDama!");
 				string pokeDamaJSON = jsonData.GetField ("message").str;
 				PokeDama pd = JsonUtility.FromJson<PokeDama>(pokeDamaJSON);
 				Debug.Log (pokeDamaJSON);
+				SceneManager.LoadScene ("MenuScene");
 			} else {
 				Debug.Log ("Failed to create your PokeDama...");
 				Debug.Log ("...?");

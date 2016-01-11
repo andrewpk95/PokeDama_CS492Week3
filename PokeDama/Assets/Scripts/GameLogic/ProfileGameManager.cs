@@ -51,6 +51,8 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	void Update () {
 		if (shakeDetector.isShaked ()) {
 			Debug.Log ("Device Shaken!");
+		}
+		if (shakeDetector.counting) {
 			Exercise ();
 		}
 	}

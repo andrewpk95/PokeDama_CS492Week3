@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CreateUIManager : MonoBehaviour {
@@ -39,7 +38,6 @@ public class CreateUIManager : MonoBehaviour {
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		PokeDama yourPokeDama = new PokeDama (imei, ID, text);
 		network.RequestCreation(yourPokeDama);
-		SceneManager.LoadScene ("MenuScene");
 	}
 
 	public void chooseInka(){
