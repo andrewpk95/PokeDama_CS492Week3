@@ -17,7 +17,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	// Use this for initialization
 	void Start () {
 		//Define spawning position for PokeDama
-		spawnPos = new Vector3(0f, 1f, 0f);
+		spawnPos = new Vector3(0f, 2f, 0f);
 
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();

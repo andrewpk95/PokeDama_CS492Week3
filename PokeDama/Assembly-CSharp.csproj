@@ -152,6 +152,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\Scripts\Animation\BattleAnimationPlayer.cs" />
+     <Compile Include="Assets\Scripts\Animation\ParticleDestroyScript.cs" />
+     <Compile Include="Assets\Scripts\Animation\ParticleSortingScript.cs" />
      <Compile Include="Assets\Scripts\Animation\ProfileAnimationPlayer.cs" />
      <Compile Include="Assets\Scripts\GameLogic\AudioManager.cs" />
      <Compile Include="Assets\Scripts\GameLogic\BattleAIScript.cs" />

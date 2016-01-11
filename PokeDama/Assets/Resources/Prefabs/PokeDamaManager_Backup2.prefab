@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 440548}
   - 114: {fileID: 11460634}
   m_Layer: 0
-  m_Name: PokeDamaManager
+  m_Name: PokeDamaManager_Backup2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,8 +40,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  myPicture: {fileID: 0}
+  opPicture: {fileID: 0}
   id_1: {fileID: 104134, guid: 2326feaf107c5400cb6ab15ef544008b, type: 2}
   id_2: {fileID: 104134, guid: 2326feaf107c5400cb6ab15ef544008b, type: 2}
+  id_1_Battle: {fileID: 0}
+  id_2_Battle: {fileID: 0}
+  id_1_Opponent: {fileID: 0}
+  id_2_Opponent: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

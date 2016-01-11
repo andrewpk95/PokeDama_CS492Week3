@@ -12,6 +12,9 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	public GameObject g_HPLabel;
 	public GameObject g_friendlinessLabel;
 
+	public GameObject healingParticle;
+	public GameObject heartParticle;
+
 	UIProgressBar playerHealthBar;
 	UILabel HPText;
 	UILabel friendText;
@@ -34,7 +37,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		playerHealthBar.value = (float) pk.health / pk.maxHealth;
 		oldFriendliness = pk.friendliness;
-		HPText.text = "HP: " +  pk.health.ToString () + " / " + pk.maxHealth.ToString ();
+		HPText.text = pk.health.ToString () + " / " + pk.maxHealth.ToString ();
 		friendText.text = "Friendliness: " + oldFriendliness.ToString ();
 	}
 	
@@ -51,6 +54,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		Debug.Log ("Player Friendliness Animation Start");
 		//Animate Particle
 		StartCoroutine(sound.PlayOnPet());
+		Instantiate (heartParticle, ProfileGameManager.spawnPos, Quaternion.identity);
 
 		//Animate Friendliness Increase
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
@@ -60,7 +64,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		friendText.text = "Friendliness: " + friendliness.ToString ();
-		HPText.text = "HP: " +  pk.health.ToString () + " / " + pk.maxHealth.ToString ();
+		HPText.text = pk.health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Player Friendliness Animation Done");
 		mutex = false;
 	}
@@ -73,6 +77,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		Debug.Log ("Heal Animation Start");
 		//Animate Particle
 		StartCoroutine(sound.PlayOnHeal());
+		Instantiate (healingParticle, ProfileGameManager.spawnPos, Quaternion.identity);
 
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
@@ -83,10 +88,10 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 				break;
 			}
 			healthText = (int) (playerHealthBar.value * pk.maxHealth);
-			HPText.text = "HP: " +  healthText.ToString () + " / " + pk.maxHealth.ToString ();
+			HPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
-		HPText.text = "HP: " + health.ToString () + " / " + pk.maxHealth.ToString ();
+		HPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Heal Animation Done");
 		mutex = false;
 	}
