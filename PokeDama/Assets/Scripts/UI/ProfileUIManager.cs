@@ -5,6 +5,7 @@ using System.Collections;
 public class ProfileUIManager : MonoBehaviour {
 
 	ProfileGameManager gameManager;
+	AudioManager audio;
 	PokeDamaManager pokeDamaManager;
 
 	//UI GameObjects
@@ -25,6 +26,7 @@ public class ProfileUIManager : MonoBehaviour {
 	void Start () {
 		gameManager = FindObjectOfType<ProfileGameManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
+		audio = FindObjectOfType<AudioManager> ();
 
 		//Loading PokeDama information to UI
 		textBox = g_Label.GetComponent<UILabel> ();
@@ -66,6 +68,7 @@ public class ProfileUIManager : MonoBehaviour {
 	}
 
 	public void OnDebugBattleClick() {
+		audio.Stop ();
 		SceneManager.LoadScene ("BattleScene");
 	}
 
@@ -77,6 +80,7 @@ public class ProfileUIManager : MonoBehaviour {
 
 	public void OnMapButtonClick() {
 		Debug.Log ("You will move to map scene...");
+		audio.Stop ();
 		SceneManager.LoadScene ("MapScene");
 	}
 

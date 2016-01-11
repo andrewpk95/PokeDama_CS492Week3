@@ -5,10 +5,15 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 
 	public static Vector3 spawnPos;
 
+	public GameObject g_audio;
+	public GameObject g_sound;
+	public GameObject g_PokeDamaManager;
+
 	NetworkManager network;
 	ProfileAnimationPlayer AnimationPlayer;
 	ProfileUIManager UI;
 	AudioManager audio;
+	SoundManager sound;
 	PokeDamaManager pokeDamaManager;
 	ShakeDetector shakeDetector;
 
@@ -24,12 +29,19 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 		AnimationPlayer = FindObjectOfType<ProfileAnimationPlayer> ();
 		UI = FindObjectOfType<ProfileUIManager> ();
 		audio = FindObjectOfType<AudioManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 		shakeDetector = FindObjectOfType<ShakeDetector> ();
 
-		if (audio != null) {
-			audio.PlayMenuMusic ();
-		}
+		//If necessary objects are not found in the scene, create it. 
+		if (audio == null)
+			audio = ((GameObject)Instantiate (g_audio, Vector3.zero, Quaternion.identity)).GetComponent<AudioManager> ();
+		if (sound == null)
+			sound = ((GameObject)Instantiate (g_sound, Vector3.zero, Quaternion.identity)).GetComponent<SoundManager> ();
+		if (pokeDamaManager == null)
+			pokeDamaManager = ((GameObject)Instantiate (g_PokeDamaManager, Vector3.zero, Quaternion.identity)).GetComponent<PokeDamaManager> ();
+
+		audio.PlayMenuMusic ();
 
 		//Debug purposes;
 		network.RequestData(imei);
