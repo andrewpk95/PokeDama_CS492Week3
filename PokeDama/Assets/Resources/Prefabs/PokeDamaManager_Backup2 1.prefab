@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 463284}
+  - 114: {fileID: 11410986}
+  m_Layer: 0
+  m_Name: PokeDamaManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &463284
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11410986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdb685506786498cb0b6c287fd79dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  myPicture: {fileID: 0}
+  opPicture: {fileID: 0}
+  id_1: {fileID: 147660, guid: 9e0d44ef846794974b06f4ff6732da91, type: 2}
+  id_2: {fileID: 155862, guid: 3167d9646caff4fa9bec401803b26c2a, type: 2}
+  id_1_Battle: {fileID: 185774, guid: 549fa64dddc4740c29ab8566d476b449, type: 2}
+  id_2_Battle: {fileID: 155862, guid: 3167d9646caff4fa9bec401803b26c2a, type: 2}
+  id_1_Opponent: {fileID: 147660, guid: 9e0d44ef846794974b06f4ff6732da91, type: 2}
+  id_2_Opponent: {fileID: 167062, guid: 09b30f0765ab14537ae2cdaf879b966a, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: PokeDamaManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 172052}
+  m_IsPrefabParent: 1

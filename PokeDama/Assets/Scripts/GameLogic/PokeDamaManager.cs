@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PokeDamaManager : MonoBehaviour {
@@ -13,6 +14,12 @@ public class PokeDamaManager : MonoBehaviour {
 
 	public GameObject id_1;
 	public GameObject id_2;
+
+	public GameObject id_1_Battle;
+	public GameObject id_2_Battle;
+
+	public GameObject id_1_Opponent;
+	public GameObject id_2_Opponent;
 	// Use this for initialization
 	void Start () {
 		//Makes this object stay throughout the entire scene
@@ -29,10 +36,18 @@ public class PokeDamaManager : MonoBehaviour {
 	public void DisplayMyPokeDama(Vector3 position) {
 		switch (myPokeDama.id) {
 		case 1:
-			myPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
+			if (SceneManager.GetActiveScene ().name == "BattleScene") {
+				myPicture = (GameObject)Instantiate (id_1_Battle, position, Quaternion.identity);
+			} else {
+				myPicture = (GameObject)Instantiate (id_1, position, Quaternion.identity);
+			}
 			break;
 		case 2:
-			myPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
+			if (SceneManager.GetActiveScene ().name == "BattleScene") {
+				myPicture = (GameObject)Instantiate (id_2_Battle, position, Quaternion.identity);
+			} else {
+				myPicture = (GameObject)Instantiate (id_2, position, Quaternion.identity);
+			}
 			break;
 		}
 
@@ -41,10 +56,10 @@ public class PokeDamaManager : MonoBehaviour {
 	public void DisplayOpPokeDama(Vector3 position) {
 		switch (opPokeDama.id) {
 		case 1:
-			opPicture = (GameObject) Instantiate (id_1, position, Quaternion.identity);
+			opPicture = (GameObject) Instantiate (id_1_Opponent, position, Quaternion.identity);
 			break;
 		case 2:
-			opPicture = (GameObject) Instantiate (id_2, position, Quaternion.identity);
+			opPicture = (GameObject) Instantiate (id_2_Opponent, position, Quaternion.identity);
 			break;
 		}
 	}

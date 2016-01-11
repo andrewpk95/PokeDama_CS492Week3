@@ -65,6 +65,10 @@ public class ProfileUIManager : MonoBehaviour {
 		lvText.text = "Lv. " + myPokeDama.level.ToString();
 	}
 
+	public void OnDebugBattleClick() {
+		SceneManager.LoadScene ("BattleScene");
+	}
+
 	public void OnPetButtonClick() {
 		Debug.Log ("You just pet your PokeDama!");
 		gameManager.Pet ();
