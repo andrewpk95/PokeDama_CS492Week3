@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 463284}
   - 114: {fileID: 11410986}
   m_Layer: 0
-  m_Name: PokeDamaManager
+  m_Name: PokeDamaManager_Backup2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
