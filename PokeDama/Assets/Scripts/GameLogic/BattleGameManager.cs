@@ -37,7 +37,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	void Start () {
 		
 		//Define spawning position for PokeDama
-		playerPos = new Vector3 (-1.5f, -0.5f, 0f);
+		playerPos = new Vector3 (-1.5f, -0.0f, 0f);
 		opponentPos = new Vector3 (1.5f, 2.5f, 0f);
 		centerPos = Vector3.Lerp (playerPos, opponentPos, 0.5f);
 		Debug.Log (centerPos);
@@ -195,7 +195,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			if (audio != null) {
 				StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 			}
-			StartCoroutine (UI.SystemMessage ("You successfully ran away.\n" + myPokeDama.name + " lost " + reward + " friendliness..."));
+			StartCoroutine (UI.SystemMessage ("You successfully ran away."));
+			StartCoroutine (UI.clickableMask ());
+			StartCoroutine (UI.SystemMessage (myPokeDama.name + " lost " + reward + " friendliness..."));
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (LoadScene ("MapScene"));
 		} else {
