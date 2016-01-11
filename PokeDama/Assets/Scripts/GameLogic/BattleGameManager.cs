@@ -198,6 +198,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			if (audio != null) {
 				StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 			}
+			StartCoroutine (AnimationPlayer.PlayOnPlayerRun ());
 			StartCoroutine (UI.SystemMessage ("You successfully ran away."));
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " lost " + reward + " friendliness..."));
@@ -243,6 +244,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage (opPokeDama.name + " fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnOpponentFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayVictoryMusic ());
 		}
@@ -259,6 +263,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage (myPokeDama.name + " fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}
@@ -275,6 +282,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage ("Both PokeDama fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
+		StartCoroutine (AnimationPlayer.PlayOnOpponentFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}
@@ -291,6 +302,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}

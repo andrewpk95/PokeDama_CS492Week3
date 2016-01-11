@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/MenuScene.unity
-=======
-- path: Assets/Scenes/CreateScene.unity
->>>>>>> master
+- path: Assets/Scenes/BattleScene.unity
   isLoaded: 1
   isActive: 1
