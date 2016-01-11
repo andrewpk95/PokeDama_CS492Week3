@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: 740f169f98582412da4bc0bb488e7e06
+timeCreated: 1452528624
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Zaraboogi_face
+    21300002: Zaraboogi_body
+    21300004: Zaraboogi_arm_L
+    21300006: Zaraboogi_leg_L
+    21300008: Zaraboogi_arm_R
+    21300010: Zaraboogi_leg_R
+    21300012: Zaraboogi_head
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Zaraboogi_face
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 608
+        width: 117
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 57.5, y: -28.5}
+        - {x: 21.5, y: -19.5}
+        - {x: -4.5, y: -19.5}
+        - {x: -58.5, y: -30.5}
+        - {x: -58.5, y: -40.5}
+        - {x: 55.5, y: -40.5}
+        - {x: 58.5, y: -39.5}
+        - {x: 58.5, y: -29.5}
+      - - {x: -5.5, y: 0.5}
+        - {x: -6.5, y: -0.5}
+        - {x: -6.5, y: -8.5}
+        - {x: -3.5, y: -9.5}
+        - {x: 3.5, y: -9.5}
+        - {x: 3.5, y: 0.5}
+      - - {x: 4.5, y: 0.5}
+        - {x: 4.5, y: -5.5}
+        - {x: 5.5, y: -9.5}
+        - {x: 11.5, y: -9.5}
+        - {x: 14.5, y: -6.5}
+        - {x: 14.5, y: 0.5}
+      - - {x: -42.5, y: 40.5}
+        - {x: -48.5, y: 35.5}
+        - {x: -48.5, y: 18.5}
+        - {x: -42.5, y: 12.5}
+        - {x: -33.5, y: 12.5}
+        - {x: -27.5, y: 16.5}
+        - {x: -27.5, y: 39.5}
+        - {x: -29.5, y: 40.5}
+      - - {x: 21.5, y: 40.5}
+        - {x: 16.5, y: 34.5}
+        - {x: 16.5, y: 20.5}
+        - {x: 22.5, y: 13.5}
+        - {x: 34.5, y: 13.5}
+        - {x: 38.5, y: 21.5}
+        - {x: 38.5, y: 35.5}
+        - {x: 34.5, y: 40.5}
+    - name: Zaraboogi_body
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 104
+        width: 373
+        height: 430
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 75.5, y: -206}
+        - {x: 95.5, y: -199}
+        - {x: 106.5, y: -192}
+        - {x: 132.5, y: -170}
+        - {x: 147.5, y: -152}
+        - {x: 163.5, y: -123}
+        - {x: 169.5, y: -110}
+        - {x: 174.5, y: -93}
+        - {x: 185.5, y: -47}
+        - {x: 186.5, y: -35}
+        - {x: 186.5, y: 24}
+        - {x: 181.5, y: 62}
+        - {x: 171.5, y: 104}
+        - {x: 165.5, y: 118}
+        - {x: 150.5, y: 146}
+        - {x: 138.5, y: 163}
+        - {x: 122.5, y: 178}
+        - {x: 97.5, y: 195}
+        - {x: 85.5, y: 202}
+        - {x: 68.5, y: 207}
+        - {x: 54.5, y: 214}
+        - {x: 49.5, y: 215}
+        - {x: -27.5, y: 215}
+        - {x: -33.5, y: 213}
+        - {x: -58.5, y: 209}
+        - {x: -77.5, y: 204}
+        - {x: -105.5, y: 189}
+        - {x: -121.5, y: 180}
+        - {x: -146.5, y: 156}
+        - {x: -157.5, y: 142}
+        - {x: -165.5, y: 129}
+        - {x: -172.5, y: 114}
+        - {x: -177.5, y: 101}
+        - {x: -180.5, y: 91}
+        - {x: -186.5, y: 52}
+        - {x: -186.5, y: -30}
+        - {x: -178.5, y: -87}
+        - {x: -173.5, y: -105}
+        - {x: -168.5, y: -121}
+        - {x: -159.5, y: -139}
+        - {x: -145.5, y: -160}
+        - {x: -137.5, y: -171}
+        - {x: -117.5, y: -188}
+        - {x: -99.5, y: -199}
+        - {x: -83.5, y: -205}
+        - {x: -54.5, y: -213}
+        - {x: -45.5, y: -215}
+        - {x: 35.5, y: -215}
+        - {x: 48.5, y: -214}
+    - name: Zaraboogi_arm_L
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 393
+        width: 118
+        height: 178
+      alignment: 9
+      pivot: {x: 0.8156785, y: 0.120214395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55.25006, y: 156.60184}
+        - {x: -86.25006, y: 156.60184}
+        - {x: -96.25006, y: 146.60184}
+        - {x: -96.25006, y: 55.601837}
+        - {x: -57.25006, y: -21.398163}
+        - {x: 16.749939, y: -21.398163}
+        - {x: 21.749939, y: -8.398163}
+        - {x: 21.749939, y: 79.60184}
+        - {x: -28.250061, y: 140.60184}
+    - name: Zaraboogi_leg_L
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 377
+        width: 101
+        height: 194
+      alignment: 9
+      pivot: {x: 0.5409788, y: 0.8769094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.638855, y: 23.879578}
+        - {x: -54.638855, y: 14.879578}
+        - {x: -54.638855, y: -134.12042}
+        - {x: -53.638855, y: -152.12042}
+        - {x: -52.638855, y: -167.12042}
+        - {x: -49.638855, y: -170.12042}
+        - {x: 46.361145, y: -170.12042}
+        - {x: 46.361145, y: 13.879578}
+        - {x: 22.361145, y: 23.879578}
+    - name: Zaraboogi_arm_R
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 369
+        width: 125
+        height: 187
+      alignment: 9
+      pivot: {x: 0.26822266, y: 0.09422653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 38.472168, y: 169.37964}
+        - {x: -33.527832, y: 60.37964}
+        - {x: -33.527832, y: -7.6203613}
+        - {x: -28.527832, y: -17.620361}
+        - {x: 66.47217, y: -17.620361}
+        - {x: 91.47217, y: 96.37964}
+        - {x: 91.47217, y: 169.37964}
+    - name: Zaraboogi_leg_R
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 369
+        width: 112
+        height: 190
+      alignment: 9
+      pivot: {x: 0.33986446, y: 0.8921053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.06482, y: 20.5}
+        - {x: -38.06482, y: 12.5}
+        - {x: -38.06482, y: -89.5}
+        - {x: -28.06482, y: -161.5}
+        - {x: -26.06482, y: -169.5}
+        - {x: 73.93518, y: -169.5}
+        - {x: 73.93518, y: 20.5}
+    - name: Zaraboogi_head
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 61
+        width: 255
+        height: 283
+      alignment: 9
+      pivot: {x: 0.26735672, y: 0.041748423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27.824036, y: 68.185196}
+        - {x: 128.82404, y: 86.185196}
+        - {x: 165.82404, y: 107.185196}
+        - {x: 186.82404, y: 140.1852}
+        - {x: 186.82404, y: 212.1852}
+        - {x: 182.82404, y: 231.1852}
+        - {x: 168.82404, y: 243.1852}
+        - {x: 132.82404, y: 269.18518}
+        - {x: 114.824036, y: 271.18518}
+        - {x: 27.824036, y: 271.18518}
+        - {x: -20.175964, y: 244.1852}
+        - {x: -38.175964, y: 217.1852}
+        - {x: -68.175964, y: 153.1852}
+        - {x: -68.175964, y: 42.185196}
+        - {x: -65.175964, y: 1.1851959}
+        - {x: -42.175964, y: -11.814804}
+        - {x: 21.824036, y: -11.814804}
+        - {x: 36.824036, y: -6.814804}
+        - {x: 48.824036, y: 2.185196}
+        - {x: 52.824036, y: 23.185196}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

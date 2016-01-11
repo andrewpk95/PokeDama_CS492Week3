@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: 2a785241e85224ce4ac04fc7910b1061
+timeCreated: 1452526961
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Inkachu_body
+    21300002: Inkachu_face
+    21300004: Inkachu_tail
+    21300006: Inkachu_soju
+    21300008: Inkachu_paw_L
+    21300010: Inkachu_paw_R
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Inkachu_body
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 408
+        height: 639
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -104, y: -238.5}
+        - {x: -67, y: -229.5}
+        - {x: -17, y: -223.5}
+        - {x: -7, y: -225.5}
+        - {x: 50, y: -228.5}
+        - {x: 72, y: -232.5}
+        - {x: 114, y: -245.5}
+        - {x: 123, y: -253.5}
+        - {x: 111, y: -312.5}
+        - {x: 114, y: -319.5}
+        - {x: 128, y: -319.5}
+        - {x: 146, y: -300.5}
+        - {x: 163, y: -265.5}
+        - {x: 170, y: -245.5}
+        - {x: 187, y: -191.5}
+        - {x: 197, y: -150.5}
+        - {x: 202, y: -109.5}
+        - {x: 200, y: -58.5}
+        - {x: 204, y: -29.5}
+        - {x: 204, y: 22.5}
+        - {x: 199, y: 65.5}
+        - {x: 190, y: 128.5}
+        - {x: 166, y: 196.5}
+        - {x: 165, y: 207.5}
+        - {x: 144, y: 249.5}
+        - {x: 139, y: 264.5}
+        - {x: 127, y: 288.5}
+        - {x: 106, y: 317.5}
+        - {x: 103, y: 319.5}
+        - {x: 90, y: 319.5}
+        - {x: 92, y: 306.5}
+        - {x: 96, y: 298.5}
+        - {x: 98, y: 273.5}
+        - {x: 99, y: 263.5}
+        - {x: 100, y: 223.5}
+        - {x: 92, y: 173.5}
+        - {x: 87, y: 159.5}
+        - {x: 67, y: 161.5}
+        - {x: 32, y: 161.5}
+        - {x: -53, y: 156.5}
+        - {x: -81, y: 151.5}
+        - {x: -101, y: 159.5}
+        - {x: -115, y: 183.5}
+        - {x: -123, y: 260.5}
+        - {x: -119, y: 277.5}
+        - {x: -117, y: 290.5}
+        - {x: -105, y: 314.5}
+        - {x: -114, y: 319.5}
+        - {x: -137, y: 298.5}
+        - {x: -154, y: 269.5}
+        - {x: -170, y: 240.5}
+        - {x: -179, y: 214.5}
+        - {x: -191, y: 156.5}
+        - {x: -195, y: 123.5}
+        - {x: -202, y: 55.5}
+        - {x: -204, y: 27.5}
+        - {x: -204, y: -75.5}
+        - {x: -200, y: -132.5}
+        - {x: -196, y: -172.5}
+        - {x: -191, y: -208.5}
+        - {x: -186, y: -223.5}
+        - {x: -174, y: -252.5}
+        - {x: -161, y: -282.5}
+        - {x: -137, y: -310.5}
+        - {x: -129, y: -319.5}
+        - {x: -111, y: -319.5}
+        - {x: -110, y: -318.5}
+        - {x: -117, y: -259.5}
+        - {x: -114, y: -246.5}
+      - - {x: 200, y: -231.5}
+        - {x: 200, y: -232.5}
+        - {x: 203, y: -235.5}
+        - {x: 204, y: -235.5}
+        - {x: 204, y: -229.5}
+        - {x: 202, y: -229.5}
+    - name: Inkachu_face
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 420
+        width: 234
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: -26}
+        - {x: -23, y: -26}
+        - {x: -27, y: -33}
+        - {x: -53, y: -77}
+        - {x: -53, y: -79}
+        - {x: -51, y: -83}
+        - {x: 28, y: -83}
+        - {x: 28, y: -76}
+        - {x: 27, y: -70}
+      - - {x: 114, y: -58}
+        - {x: 116, y: -60}
+        - {x: 117, y: -60}
+        - {x: 117, y: -55}
+        - {x: 115, y: -55}
+      - - {x: 48, y: 83}
+        - {x: 42, y: 77}
+        - {x: 42, y: -20}
+        - {x: 48, y: -45}
+        - {x: 98, y: -45}
+        - {x: 117, y: -19}
+        - {x: 117, y: 71}
+        - {x: 97, y: 83}
+      - - {x: -105, y: 64}
+        - {x: -117, y: 52}
+        - {x: -117, y: -35}
+        - {x: -111, y: -38}
+        - {x: -83, y: -38}
+        - {x: -68, y: -31}
+        - {x: -64, y: -15}
+        - {x: -64, y: 38}
+        - {x: -78, y: 64}
+    - name: Inkachu_tail
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 161
+        width: 225
+        height: 230
+      alignment: 9
+      pivot: {x: 0.052962784, y: 0.04724632}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 213.08337, y: 189.13335}
+        - {x: 213.08337, y: 219.13335}
+        - {x: 183.08337, y: 219.13335}
+        - {x: -8.916626, y: 158.13335}
+        - {x: -8.916626, y: 140.13335}
+        - {x: 44.083374, y: 61.133347}
+        - {x: -11.916626, y: 20.133347}
+        - {x: -11.916626, y: -0.86665344}
+        - {x: 3.083374, y: -10.866653}
+        - {x: 112.083374, y: -10.866653}
+        - {x: 137.08337, y: -6.8666534}
+        - {x: 114.083374, y: 72.13335}
+        - {x: 188.08337, y: 59.133347}
+    - name: Inkachu_soju
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 0
+        width: 127
+        height: 446
+      alignment: 9
+      pivot: {x: 0.5279527, y: 0.32488787}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.950012, y: 176.1}
+        - {x: 26.950012, y: 249.1}
+        - {x: 30.950012, y: 264.1}
+        - {x: 26.950012, y: 299.1}
+        - {x: -32.049988, y: 299.1}
+        - {x: -34.049988, y: 292.1}
+        - {x: -36.049988, y: 170.1}
+        - {x: -67.04999, y: 121.100006}
+        - {x: -67.04999, y: -135.9}
+        - {x: -55.049988, y: -144.9}
+        - {x: 46.950012, y: -144.9}
+        - {x: 58.950012, y: -137.9}
+        - {x: 59.950012, y: -132.9}
+        - {x: 59.950012, y: 121.100006}
+    - name: Inkachu_paw_L
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 25
+        width: 91
+        height: 100
+      alignment: 9
+      pivot: {x: 0.7600731, y: 0.26333383}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.1666565, y: -26.333382}
+        - {x: -12.1666565, y: -24.333382}
+        - {x: -15.1666565, y: -23.333382}
+        - {x: -17.166656, y: -26.333382}
+      - - {x: -12.1666565, y: -25.333382}
+        - {x: -12.1666565, y: -26.333382}
+        - {x: -5.1666565, y: -26.333382}
+        - {x: -4.1666565, y: -25.333382}
+        - {x: -5.1666565, y: -22.333382}
+        - {x: -8.1666565, y: -22.333382}
+      - - {x: -69.16666, y: 73.66662}
+        - {x: -69.16666, y: 1.6666183}
+        - {x: -40.166656, y: -25.333382}
+        - {x: 1.8333435, y: -25.333382}
+        - {x: 18.833344, y: -13.333382}
+        - {x: 21.833344, y: -0.33338165}
+        - {x: 21.833344, y: 26.666618}
+        - {x: -32.166656, y: 73.66662}
+      - - {x: 16.833344, y: -6.3333817}
+        - {x: 19.833344, y: -5.3333817}
+        - {x: 19.833344, y: -2.3333817}
+        - {x: 16.833344, y: -1.3333817}
+        - {x: 14.8333435, y: -3.3333817}
+    - name: Inkachu_paw_R
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 39
+        width: 94
+        height: 71
+      alignment: 9
+      pivot: {x: 0.8273049, y: 0.34999996}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -77.76666, y: 46.15}
+        - {x: -77.76666, y: -1.8499985}
+        - {x: -45.766663, y: -24.849998}
+        - {x: 7.2333374, y: -24.849998}
+        - {x: 16.233337, y: -3.8499985}
+        - {x: 16.233337, y: 40.15}
+        - {x: -22.766663, y: 46.15}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
