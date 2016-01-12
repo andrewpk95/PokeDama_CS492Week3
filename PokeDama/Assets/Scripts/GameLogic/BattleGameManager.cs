@@ -355,7 +355,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 				Debug.Log (pokeDamaJSON);
 				PokeDama inkachu = JsonUtility.FromJson<PokeDama> (pokeDamaJSON);
 
-				inkachu.health = inkachu.maxHealth;
+				//inkachu.health = inkachu.maxHealth;
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
 				pokeDamaManager.DisplayMyPokeDama (playerPos);

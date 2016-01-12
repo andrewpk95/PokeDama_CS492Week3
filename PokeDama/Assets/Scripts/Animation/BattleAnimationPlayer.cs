@@ -40,6 +40,11 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		playerHPText = g_playerHPText.GetComponent<UILabel> ();
 		opponentHPText = g_opponentHPText.GetComponent<UILabel> ();
 
+		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
+		playerHealthBar.value = ((float) pk.health) / pk.maxHealth;
+		pk = pokeDamaManager.GetOpPokeDama ();
+		opponentHealthBar.value = ((float) pk.health) / pk.maxHealth;
+
 		myPokeDama = pokeDamaManager.myPicture;
 		opPokeDama = pokeDamaManager.opPicture;
 	}
