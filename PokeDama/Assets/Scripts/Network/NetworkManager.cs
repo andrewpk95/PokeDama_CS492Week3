@@ -39,6 +39,15 @@ public class NetworkManager : MonoBehaviour {
 
 	}
 
+    //Send request to query about the scene 
+    public void RequestScene(string IMEI)
+    {
+        JSONObject req_scene = new JSONObject();
+        req_scene.AddField("RequestType", "RetrieveScene");
+        req_scene.AddField("IMEI", IMEI);
+        socket.Emit("Request", req_scene);
+    }
+
 	//Obsolete
 	public void NewMessage(SocketIOEvent socketEvent) {
 		Debug.Log ("Response from server! " + socketEvent.data);
