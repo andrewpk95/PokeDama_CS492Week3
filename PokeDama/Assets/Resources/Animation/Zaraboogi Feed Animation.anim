@@ -106,14 +106,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 0.07, y: -0.39, z: -4}
-        inSlope: {x: 0, y: 0, z: -3}
-        outSlope: {x: 0, y: 0, z: -3}
+        value: {x: 0.07, y: -0.39, z: 0}
+        inSlope: {x: 0, y: 0, z: -7}
+        outSlope: {x: 0, y: 0, z: -7}
         tangentMode: 0
       - time: 1
         value: {x: 0.07, y: -0.39, z: -7}
-        inSlope: {x: 0, y: 0, z: -3}
-        outSlope: {x: 0, y: 0, z: -3}
+        inSlope: {x: 0, y: 0, z: -7}
+        outSlope: {x: 0, y: 0, z: -7}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -331,14 +331,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -4
-        inSlope: -3
-        outSlope: -3
+        value: 0
+        inSlope: -7
+        outSlope: -7
         tangentMode: 10
       - time: 1
         value: -7
-        inSlope: -3
-        outSlope: -3
+        inSlope: -7
+        outSlope: -7
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -595,7 +595,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
+    path: Zaraboogi_head_normal
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -605,7 +605,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
+    path: Zaraboogi_head_normal
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -615,7 +615,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
+    path: Zaraboogi_head_normal
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -685,7 +685,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Zaraboogi_head_normal
+    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -695,7 +695,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Zaraboogi_head_normal
+    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -705,7 +705,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Zaraboogi_head_normal
+    path: Zaraboogi_head_normal/Zaraboogi_face/Zaraboogi_rainbow
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
