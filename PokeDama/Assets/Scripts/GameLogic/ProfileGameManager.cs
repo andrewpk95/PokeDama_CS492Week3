@@ -19,10 +19,12 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 
 	PokeDama myPokeDama;
 
+	public bool safeToLoad = false;
+
 	// Use this for initialization
 	void Start () {
 		//Define spawning position for PokeDama
-		spawnPos = new Vector3(0f, 2f, 0f);
+		spawnPos = new Vector3(0f, 2f, -0.1f);
 
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();
@@ -51,10 +53,10 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	void Update () {
         if (ShakeDetector.isShaked())
         {
-            Debug.Log("Update isShaked() is TRUE");
+            //Debug.Log("Update isShaked() is TRUE");
             Exercise();
         }
-        Debug.Log("Update isShaked() is false");
+        //Debug.Log("Update isShaked() is false");
 	}
 
 	public void Pet() {
@@ -62,7 +64,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 		UI.SystemMessage ("You just pet " + myPokeDama.name + "!", 3);
 		myPokeDama.friendliness += 2;
 		myPokeDama.recalculateStat ();
-		Save (myPokeDama);
+		safeToLoad = false;
 		StartCoroutine (AnimationPlayer.PlayOnFriendliness (myPokeDama.friendliness));
 		UI.UIUpdate ();
 	}
@@ -70,9 +72,9 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	public void Exercise() {
 		UI.EraseAllMessage ();
 		UI.SystemMessage ("You just exercised " + myPokeDama.name + "!", 3);
-		myPokeDama.friendliness += 10;
+		myPokeDama.strength += 2;
 		myPokeDama.recalculateStat ();
-		Save (myPokeDama);
+		safeToLoad = false;
 		StartCoroutine (AnimationPlayer.PlayOnFriendliness (myPokeDama.friendliness));
 		UI.UIUpdate ();
 	}
@@ -82,13 +84,25 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 		UI.SystemMessage ("You just fed " + myPokeDama.name + "!", 3);
 		myPokeDama.damage (-1000);
 		myPokeDama.recalculateStat ();
-		Save (myPokeDama);
+		safeToLoad = false;
 		StartCoroutine (AnimationPlayer.PlayOnHeal (((float) myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		UI.UIUpdate ();
 	}
 
-	void Save(PokeDama myPokeDama) {
+	public void Save() {
+		myPokeDama.recalculateStat ();
 		network.RequestSave (myPokeDama);
+	}
+
+	IEnumerator AutoSave(float seconds) {
+		while (true) {
+			yield return new WaitForSeconds (seconds);
+			Save ();
+		}
+	}
+
+	public void StopAutoSave() {
+		StopCoroutine ("AutoSave");
 	}
 
 	public void handleResponse(string data) {
@@ -103,6 +117,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 				Debug.Log ("Successfully saved your PokeDama!");
 				string pokeDamaJSON = jsonData.GetField ("message").ToString();
 				Debug.Log (pokeDamaJSON);
+				safeToLoad = true;
 			} else {
 				Debug.Log ("Failed to save your PokeDama...");
 			}
@@ -124,6 +139,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 
 				AnimationPlayer.enabled = true;
 				UI.enabled = true;
+				StartCoroutine (AutoSave (5f));
 				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
