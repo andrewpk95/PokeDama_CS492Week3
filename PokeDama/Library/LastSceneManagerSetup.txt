@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/BattleScene.unity
-=======
 - path: Assets/Scenes/PokeDamaScene.unity
->>>>>>> master
   isLoaded: 1
   isActive: 1

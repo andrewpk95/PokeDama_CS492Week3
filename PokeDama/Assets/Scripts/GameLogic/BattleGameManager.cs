@@ -100,6 +100,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -133,7 +134,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
-
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -157,6 +158,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			DamageMine (damage);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -180,6 +182,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			DamageMine (damage);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -203,6 +206,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			DamageOpponent (heal);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentHeal (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {

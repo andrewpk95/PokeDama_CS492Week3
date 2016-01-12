@@ -577,4 +577,13 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+	public IEnumerator Delay(float seconds) {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		yield return new WaitForSeconds (seconds);
+		mutex = false;
+	}
 }
