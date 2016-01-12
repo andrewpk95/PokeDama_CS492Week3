@@ -359,7 +359,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	}
 
 	IEnumerator LoadScene(string scene) {
-		while (BattleAnimationPlayer.mutex) {
+		while (AnimationPlayer.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
 		//BattleAnimationPlayer.mutex = true;
