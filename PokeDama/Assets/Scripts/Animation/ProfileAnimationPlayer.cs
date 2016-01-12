@@ -20,6 +20,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	UILabel friendText;
 
 	public GameObject myPokeDama;
+	Animator anim;
 	int oldFriendliness;
 
 	// Use this for initialization
@@ -32,6 +33,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		friendText = g_friendlinessLabel.GetComponent<UILabel> ();
 
 		myPokeDama = pokeDamaManager.myPicture;
+		anim = myPokeDama.GetComponent<Animator> ();
 
 		//Initialize UI
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
@@ -52,10 +54,11 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Player Friendliness Animation Start");
+		//Animate PokeDama
+		anim.SetTrigger("Pet");
 		//Animate Particle
 		StartCoroutine(sound.PlayOnPet());
 		Instantiate (heartParticle, ProfileGameManager.spawnPos, Quaternion.identity);
-
 		//Animate Friendliness Increase
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		while (oldFriendliness < friendliness) {
@@ -75,10 +78,11 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		}
 		mutex = true;
 		Debug.Log ("Heal Animation Start");
+		//Animate PokeDama
+		anim.SetTrigger("Feed");
 		//Animate Particle
 		StartCoroutine(sound.PlayOnHeal());
 		Instantiate (healingParticle, ProfileGameManager.spawnPos, Quaternion.identity);
-
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		int healthText = 0;

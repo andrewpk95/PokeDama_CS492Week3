@@ -4,7 +4,13 @@ using System.Collections;
 
 public class MenuGameManager : MonoBehaviour, GameManager {
 
+	public GameObject g_audio;
+	public GameObject g_sound;
+	public GameObject g_PokeDamaManager;
+
 	NetworkManager network;
+	AudioManager audio;
+	SoundManager sound;
 	PokeDamaManager pokeDamaManager;
 
 	// Use this for initialization
@@ -12,8 +18,19 @@ public class MenuGameManager : MonoBehaviour, GameManager {
 		network = FindObjectOfType<NetworkManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 		string imei = SystemInfo.deviceUniqueIdentifier;
-		//Debug.Log (imei);
+		audio = FindObjectOfType<AudioManager> ();
+		sound = FindObjectOfType<SoundManager> ();
+		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
+		//If necessary objects are not found in the scene, create it. 
+		if (audio == null)
+			audio = ((GameObject)Instantiate (g_audio, Vector3.zero, Quaternion.identity)).GetComponent<AudioManager> ();
+		if (sound == null)
+			sound = ((GameObject)Instantiate (g_sound, Vector3.zero, Quaternion.identity)).GetComponent<SoundManager> ();
+		if (pokeDamaManager == null)
+			pokeDamaManager = ((GameObject)Instantiate (g_PokeDamaManager, Vector3.zero, Quaternion.identity)).GetComponent<PokeDamaManager> ();
+
+		audio.PlayMenuMusic ();
 		network.RequestData (imei);
 	}
 	

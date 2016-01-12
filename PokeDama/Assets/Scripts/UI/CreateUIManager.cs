@@ -4,6 +4,7 @@ using System.Collections;
 public class CreateUIManager : MonoBehaviour {
 	
 	NetworkManager network;
+	SoundManager sound;
 	public GameObject inputBox;
 	UIInput uiInput;
 	string text = "";
@@ -13,6 +14,7 @@ public class CreateUIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		network = FindObjectOfType<NetworkManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 		uiInput = inputBox.GetComponent<UIInput> ();
 	}
 	
@@ -24,7 +26,7 @@ public class CreateUIManager : MonoBehaviour {
 	public void getName(){
 		text = uiInput.label.text;
 		print (text);
-
+		StartCoroutine (sound.PlayOnTouch ());
 	}
 
 
@@ -38,16 +40,19 @@ public class CreateUIManager : MonoBehaviour {
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		PokeDama yourPokeDama = new PokeDama (imei, ID, text);
 		network.RequestCreation(yourPokeDama);
+		StartCoroutine (sound.PlayOnTouch ());
 	}
 
 	public void chooseInka(){
 		ID = 1;
 		print ("you choose Inkachu");
+		StartCoroutine (sound.PlayOnTouch ());
 	}
 
 	public void chooseZara(){
 		ID = 2;
 		print ("you choose Zaraboogi");
+		StartCoroutine (sound.PlayOnTouch ());
 	}
 
 }

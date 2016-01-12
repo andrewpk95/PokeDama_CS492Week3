@@ -22,6 +22,7 @@ public class BattleUIManager : MonoBehaviour {
 	public GameObject KickButton;
 	public GameObject LightningButton;
 	public GameObject ThrowButton;
+	public GameObject SpitButton;
 	public GameObject SleepButton;
 	public GameObject RunButton;
 
@@ -82,7 +83,7 @@ public class BattleUIManager : MonoBehaviour {
 			SleepButton.SetActive (true);
 		} else if (pokeDamaManager.GetMyPokeDama ().id == 2) {
 			KickButton.SetActive (true);
-			ThrowButton.SetActive (true);
+			SpitButton.SetActive (true);
 			SleepButton.SetActive (true);
 		}
 		RunButton.SetActive (true);
@@ -120,6 +121,16 @@ public class BattleUIManager : MonoBehaviour {
 			Debug.Log ("You pressed Throw command!");
 			StartCoroutine (sound.PlayOnTouch ());
 			gameManager.Throw ();
+		} else {
+			Debug.Log ("It's not your turn yet!");
+		}
+	}
+
+	public void OnSpitButtonClick() {
+		if (gameManager.isPlayerTurn) {
+			Debug.Log ("You pressed Spit command!");
+			StartCoroutine (sound.PlayOnTouch ());
+			gameManager.Spit ();
 		} else {
 			Debug.Log ("It's not your turn yet!");
 		}

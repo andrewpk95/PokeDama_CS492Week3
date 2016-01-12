@@ -35,7 +35,6 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		playerPos = new Vector3 (-1.5f, -0.0f, 0f);
 		opponentPos = new Vector3 (1.5f, 2.5f, 0f);
 		centerPos = Vector3.Lerp (playerPos, opponentPos, 0.5f);
-		Debug.Log (centerPos);
 
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();
@@ -61,7 +60,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		//Debug purposes
 		network.RequestData(imei);
 
-		pokeDamaManager.SaveOpPokeDama (new PokeDama (imei, 2, "opponent"));
+		int random = Random.Range (1, 3);
+		pokeDamaManager.SaveOpPokeDama (new PokeDama (imei, random, "opponent"));
 		opPokeDama = pokeDamaManager.GetOpPokeDama ();
 		pokeDamaManager.DisplayOpPokeDama (opponentPos);
 
@@ -99,6 +99,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -132,7 +133,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
-
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -156,6 +157,31 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			DamageMine (damage);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
+		CheckDeath ();
+		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.unMask ());
+		}
+	}
+
+	public void Spit() {
+		int damage = 0;
+		if (isPlayerTurn) {
+			StartCoroutine (UI.Mask ());
+			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Spit!"));
+			StartCoroutine (AnimationPlayer.PlayOnPlayerSpit ());
+			damage = 1500;
+			DamageOpponent (damage);
+			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
+		} else {
+			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Spit!"));
+			StartCoroutine (AnimationPlayer.PlayOnOpponentSpit ());
+			damage = 1500;
+			DamageMine (damage);
+			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
+		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -179,6 +205,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			DamageOpponent (heal);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentHeal (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
+		StartCoroutine (AnimationPlayer.Delay (1f));
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
@@ -354,18 +381,14 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 				string pokeDamaJSON = jsonData.GetField ("message").ToString();
 				Debug.Log (pokeDamaJSON);
 				PokeDama inkachu = JsonUtility.FromJson<PokeDama> (pokeDamaJSON);
-
-				//inkachu.health = inkachu.maxHealth;
 				pokeDamaManager.SaveMyPokeDama (inkachu);
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
 				pokeDamaManager.DisplayMyPokeDama (playerPos);
 				AnimationPlayer.enabled = true;
 				UI.enabled = true;
-				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");
 				Debug.Log ("Creating new PokeDama...");
-				//SceneManager.LoadScene ("CreateScene");
 			}
 		}
 	}
