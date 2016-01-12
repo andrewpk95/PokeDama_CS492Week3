@@ -115,6 +115,7 @@ Transform:
   - {fileID: 590698953}
   - {fileID: 295400991}
   - {fileID: 922948767}
+  - {fileID: 71984458}
   - {fileID: 132426091}
   - {fileID: 332587297}
   - {fileID: 1549928082}
@@ -165,6 +166,99 @@ MonoBehaviour:
   mDepth: 1
   mSortingOrder: 0
   mClipOffset: {x: 0, y: 0}
+--- !u!1 &71984457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 71984458}
+  - 114: {fileID: 71984459}
+  m_Layer: 5
+  m_Name: StrengthLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &71984458
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71984457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -232, y: 35, z: 0}
+  m_LocalScale: {x: 0.7867524, y: 0.7867524, z: 0.7867524}
+  m_Children: []
+  m_Father: {fileID: 8791430}
+  m_RootOrder: 4
+--- !u!114 &71984459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71984457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 430
+  mHeight: 112
+  mDepth: 3
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3.8392856
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 11400000, guid: 800fce3d977b52d4cadf1a0790a413f0, type: 2}
+  mText: 'Strength: '
+  mFontSize: 100
+  mFontStyle: 0
+  mAlignment: 1
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1 &132426090
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,13 +282,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 132426090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75, y: 10, z: 0}
+  m_LocalPosition: {x: 75, y: -68, z: 0}
   m_LocalScale: {x: 0.7867524, y: 0.7867524, z: 0.7867524}
   m_Children:
   - {fileID: 1905375019}
   - {fileID: 338311397}
   m_Father: {fileID: 8791430}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &132426092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +519,7 @@ Transform:
   m_LocalScale: {x: 0.7867524, y: 0.7867524, z: 0.7867524}
   m_Children: []
   m_Father: {fileID: 8791430}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &338311396
 Prefab:
   m_ObjectHideFlags: 0
@@ -949,7 +1043,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 922948766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -329, y: 10, z: 0}
+  m_LocalPosition: {x: -329, y: -68, z: 0}
   m_LocalScale: {x: 0.7867524, y: 0.7867524, z: 0.7867524}
   m_Children: []
   m_Father: {fileID: 8791430}
@@ -1339,6 +1433,7 @@ MonoBehaviour:
   g_audio: {fileID: 188108, guid: 618a5ef0edb4b454984e2964cd50f3e6, type: 2}
   g_sound: {fileID: 158086, guid: b557987bf9afc41eea5ec9ad1f125290, type: 2}
   g_PokeDamaManager: {fileID: 172052, guid: fdcb67e1810874deab35aa8f8c5e060b, type: 2}
+  safeToLoad: 0
 --- !u!4 &1531729175
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1475,7 @@ Transform:
   m_LocalScale: {x: 0.7867524, y: 0.7867524, z: 0.7867524}
   m_Children: []
   m_Father: {fileID: 8791430}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &1549928083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1597,7 @@ MonoBehaviour:
   g_playerHealthBar: {fileID: 2034601086}
   g_HPLabel: {fileID: 1905375017}
   g_friendlinessLabel: {fileID: 332587295}
+  g_strengthLabel: {fileID: 71984457}
   healingParticle: {fileID: 175472, guid: d77feac015f234c9d9a53c5c52830e40, type: 2}
   heartParticle: {fileID: 130592, guid: d47b39ee422754e49a354018ac6086d1, type: 2}
   myPokeDama: {fileID: 0}

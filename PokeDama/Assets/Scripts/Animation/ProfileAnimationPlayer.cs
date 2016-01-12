@@ -11,6 +11,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	public GameObject g_playerHealthBar;
 	public GameObject g_HPLabel;
 	public GameObject g_friendlinessLabel;
+	public GameObject g_strengthLabel;
 
 	public GameObject healingParticle;
 	public GameObject heartParticle;
@@ -18,6 +19,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 	UIProgressBar playerHealthBar;
 	UILabel HPText;
 	UILabel friendText;
+	UILabel strengthText;
 
 	public GameObject myPokeDama;
 	Animator anim;
@@ -31,6 +33,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		playerHealthBar = g_playerHealthBar.GetComponent<UIProgressBar> ();
 		HPText = g_HPLabel.GetComponent<UILabel> ();
 		friendText = g_friendlinessLabel.GetComponent<UILabel> ();
+		strengthText = g_strengthLabel.GetComponent<UILabel> ();
 
 		myPokeDama = pokeDamaManager.myPicture;
 		anim = myPokeDama.GetComponent<Animator> ();
@@ -41,6 +44,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 		oldFriendliness = pk.friendliness;
 		HPText.text = pk.health.ToString () + " / " + pk.maxHealth.ToString ();
 		friendText.text = "Friendliness: " + oldFriendliness.ToString ();
+		strengthText.text = "Strength: " + pk.strength.ToString ();
 	}
 	
 	// Update is called once per frame
@@ -67,6 +71,7 @@ public class ProfileAnimationPlayer : MonoBehaviour {
 			yield return new WaitForEndOfFrame ();
 		}
 		friendText.text = "Friendliness: " + friendliness.ToString ();
+		strengthText.text = "Strength: " + pk.strength.ToString ();
 		HPText.text = pk.health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Player Friendliness Animation Done");
 		mutex = false;
