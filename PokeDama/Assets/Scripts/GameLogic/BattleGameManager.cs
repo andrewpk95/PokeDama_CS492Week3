@@ -13,11 +13,11 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	public static Vector3 centerPos;
 
 	NetworkManager network;
-	BattleAnimationPlayer AnimationPlayer;
-	BattleUIManager UI;
-	AudioManager audio;
-	SoundManager sound;
-	PokeDamaManager pokeDamaManager;
+	public BattleAnimationPlayer AnimationPlayer;
+	public BattleUIManager UI;
+	public AudioManager audio;
+	public SoundManager sound;
+	public PokeDamaManager pokeDamaManager;
 	public GameObject opponentAI;
 
 	PokeDama myPokeDama;
@@ -245,7 +245,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " lost " + reward + " friendliness..."));
 			StartCoroutine (UI.clickableMask ());
-			StartCoroutine (LoadScene ("MapScene"));
+			StartCoroutine (LoadScene ("PokeDamaScene"));
 		} else {
 			StartCoroutine (UI.SystemMessage ("You failed to run away..."));
 			Debug.Log ("Failed to run away...");
@@ -299,7 +299,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		}
 		StartCoroutine (UI.SystemMessage ("You won!\n" + myPokeDama.name + " got " + reward + " friendliness!"));
 		StartCoroutine (UI.clickableMask ());
-		StartCoroutine (LoadScene ("MapScene"));
+		StartCoroutine (LoadScene ("PokeDamaScene"));
 	}
 
 	void onPlayerLose() {
@@ -362,12 +362,12 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		while (BattleAnimationPlayer.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		//BattleAnimationPlayer.mutex = true;
 		while (!safeToLoad) {
 			yield return new WaitForEndOfFrame ();
 		}
 		SceneManager.LoadScene (scene);
-		BattleAnimationPlayer.mutex = false;
+		//BattleAnimationPlayer.mutex = false;
 	}
 
 	void Save(PokeDama myPokeDama) {
