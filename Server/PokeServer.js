@@ -234,7 +234,7 @@ io.on('connection', function(socket) {
            var scene = jsonObj.SaveScene;
            var num = 0;
            
-            console.log('imei : ', scene.IMEI);
+            console.log('scene imei : ', scene.IMEI);
 
             db.collection("PokeScene").find({"IMEI":scene.IMEI}).toArray(function (err, items) {
               if (err) {
@@ -244,12 +244,14 @@ io.on('connection', function(socket) {
                 console.log('Processing Complete ', items);
 
                  if(items.length == 0){
+                    console.log('         PokeScene insert ', scene);
                     db.collection("PokeScene").insertOne(scene);
                   } else{
+                    console.log('         else PokeScene insert ', items[0].IMEI);
                     db.collection("PokeScene").findAndModify(
-                      {IMEI: jsonObj.IMEI}, //QUERY
+                      {IMEI: items[0].IMEI}, //QUERY
                       [['_id', 'asc']], //sort order
-                      {$set: {scene: jsonObj.scene}}, //replacement, replaces only the field "hi"
+                      {$set: {scene: scene.scene}}, //replacement, replaces only the field "hi"
                       {}, //options
                       function(err, object){
                         if(err){
