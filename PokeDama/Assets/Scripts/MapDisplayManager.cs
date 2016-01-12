@@ -6,6 +6,7 @@ public class MapDisplayManager : MonoBehaviour, GameManager {
     NetworkManager network;
     string imei;
     int number = 0;
+    int limit = 200;
 
     // Use this for initialization
     void Start()
@@ -35,7 +36,7 @@ public class MapDisplayManager : MonoBehaviour, GameManager {
     // Update is called once per frame
     void Update()
     {
-        if (number > 100)
+        if (number > limit)
         {
             //server의 db에 query를 날리고 scene 정보를 받아오고 넘기던지 말던지 결정
             network.RequestScene(imei);
@@ -53,7 +54,7 @@ public class MapDisplayManager : MonoBehaviour, GameManager {
         return null;
     }
 
-    public void handleResponse(string data)
+    void GameManager.handleResponse(string data)
     {
         JSONObject json = new JSONObject(data);
 
