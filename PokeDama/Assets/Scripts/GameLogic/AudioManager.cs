@@ -18,7 +18,6 @@ public class AudioManager : MonoBehaviour {
 		if (dontDestroyOnLoad) {
 			DontDestroyOnLoad (transform.gameObject);
 		}
-		currentMusic = (GameObject) Instantiate (MenuMusic, Vector3.zero, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -27,30 +26,52 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void PlayMenuMusic() {
-		if (currentMusic.name != "MenuMusic(Clone)") {
-			Destroy (currentMusic);
+		if (currentMusic != null) {
+			if (currentMusic.name != "MenuMusic(Clone)") {
+				Destroy (currentMusic);
+				currentMusic = (GameObject)Instantiate (MenuMusic, Vector3.zero, Quaternion.identity);
+			}
+		} else {
 			currentMusic = (GameObject)Instantiate (MenuMusic, Vector3.zero, Quaternion.identity);
 		}
 	}
 
 	public void PlayBattleMusic() {
-		if (currentMusic.name != "BattleMusic(Clone)") {
-			Destroy (currentMusic);
+		if (currentMusic != null) {
+			if (currentMusic.name != "BattleMusic(Clone)") {
+				Destroy (currentMusic);
+				currentMusic = (GameObject)Instantiate (BattleMusic, Vector3.zero, Quaternion.identity);
+			}
+		} else {
 			currentMusic = (GameObject)Instantiate (BattleMusic, Vector3.zero, Quaternion.identity);
 		}
 	}
 
 	public void PlayVictoryMusic() {
-		if (currentMusic.name != "VictoryMusic(Clone)") {
-			Destroy (currentMusic);
+		if (currentMusic != null) {
+			if (currentMusic.name != "VictoryMusic(Clone)") {
+				Destroy (currentMusic);
+				currentMusic = (GameObject)Instantiate (VictoryMusic, Vector3.zero, Quaternion.identity);
+			}
+		} else {
 			currentMusic = (GameObject)Instantiate (VictoryMusic, Vector3.zero, Quaternion.identity);
 		}
 	}
 
 	public void PlayDefeatMusic() {
-		if (currentMusic.name != "DefeatMusic(Clone)") {
-			Destroy (currentMusic);
+		if (currentMusic != null) {
+			if (currentMusic.name != "DefeatMusic(Clone)") {
+				Destroy (currentMusic);
+				currentMusic = (GameObject)Instantiate (DefeatMusic, Vector3.zero, Quaternion.identity);
+			}
+		} else {
 			currentMusic = (GameObject)Instantiate (DefeatMusic, Vector3.zero, Quaternion.identity);
+		}
+	}
+
+	public void Stop() {
+		if (currentMusic != null) {
+			Destroy (currentMusic);
 		}
 	}
 }

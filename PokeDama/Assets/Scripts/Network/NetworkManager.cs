@@ -6,6 +6,9 @@ using SocketIO;
 public class NetworkManager : MonoBehaviour {
 
 	public bool dontDestroyOnLoad = false;
+	bool isConnected = false;
+
+	public GameObject ErrorMessage;
 
 	private SocketIOComponent socket;
 
@@ -45,6 +48,7 @@ public class NetworkManager : MonoBehaviour {
 	//The client stops pinging the server and enables the main Game Logic. 
 	public void NetTest(SocketIOEvent socketEvent) {
 		//Process Data from the Server.
+		isConnected = true;
 		string data = socketEvent.data.ToString ();
 		Debug.Log ("Response from server: " + data);
 		StopCoroutine ("ConnectionTest");
@@ -66,14 +70,19 @@ public class NetworkManager : MonoBehaviour {
 	//This function sends pings "abcd" to the Server until the Server Responds. 
 	private IEnumerator ConnectionTest()
 	{
-		while (true) {
+		int waitTime = 50;
+		while (waitTime > 0) {
 			Dictionary<string, string> data = new Dictionary<string, string> ();
 			data ["node"] = "ConnectionTest";
 			data ["message"] = "abcd";
 			socket.Emit ("ConnectionTest", new JSONObject (data));
 			Debug.Log ("ConnectionTest abcd");
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (0.1f);
 			yield return null;
+			waitTime--;
+		}
+		if (!isConnected) {
+			Instantiate (ErrorMessage, Vector3.zero, Quaternion.identity);
 		}
 	}
 

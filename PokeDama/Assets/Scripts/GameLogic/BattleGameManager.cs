@@ -4,14 +4,9 @@ using System.Collections;
 
 public class BattleGameManager : MonoBehaviour, GameManager {
 
-	public enum BattleState {
-		Start,
-		Battle,
-		Wait,
-		Faint,
-		Result,
-		End
-	}
+	public GameObject g_audio;
+	public GameObject g_sound;
+	public GameObject g_PokeDamaManager;
 
 	public static Vector3 playerPos;
 	public static Vector3 opponentPos;
@@ -21,13 +16,13 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	BattleAnimationPlayer AnimationPlayer;
 	BattleUIManager UI;
 	AudioManager audio;
+	SoundManager sound;
 	PokeDamaManager pokeDamaManager;
 	public GameObject opponentAI;
 
 	PokeDama myPokeDama;
 	PokeDama opPokeDama;
 
-	public BattleState battleState;
 	public bool isPlayerTurn;
 	public bool gameOver;
 
@@ -47,14 +42,22 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		AnimationPlayer = FindObjectOfType<BattleAnimationPlayer> ();
 		UI = FindObjectOfType<BattleUIManager> ();
 		audio = FindObjectOfType<AudioManager> ();
+		sound = FindObjectOfType<SoundManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
-		battleState = BattleState.Start;
+		//If necessary objects are not found in the scene, create it. 
+		if (audio == null)
+			audio = ((GameObject)Instantiate (g_audio, Vector3.zero, Quaternion.identity)).GetComponent<AudioManager> ();
+		if (sound == null)
+			sound = ((GameObject)Instantiate (g_sound, Vector3.zero, Quaternion.identity)).GetComponent<SoundManager> ();
+		if (pokeDamaManager == null)
+			pokeDamaManager = ((GameObject)Instantiate (g_PokeDamaManager, Vector3.zero, Quaternion.identity)).GetComponent<PokeDamaManager> ();
+
 		isPlayerTurn = true;
 		gameOver = false;
-		if (audio != null) {
-			audio.PlayBattleMusic ();
-		}
+
+		audio.PlayBattleMusic ();
+
 		//Debug purposes
 		network.RequestData(imei);
 
@@ -195,6 +198,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			if (audio != null) {
 				StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 			}
+			StartCoroutine (AnimationPlayer.PlayOnPlayerRun ());
 			StartCoroutine (UI.SystemMessage ("You successfully ran away."));
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " lost " + reward + " friendliness..."));
@@ -240,6 +244,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage (opPokeDama.name + " fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnOpponentFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayVictoryMusic ());
 		}
@@ -256,6 +263,9 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage (myPokeDama.name + " fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}
@@ -272,6 +282,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (UI.SystemMessage ("Both PokeDama fainted!"));
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
+		StartCoroutine (AnimationPlayer.PlayOnOpponentFaint ());
+		StartCoroutine (UI.clickableMask ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}
@@ -288,6 +302,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		myPokeDama.friendliness += reward;
 		myPokeDama.recalculateStat ();
 		Save (myPokeDama);
+		StartCoroutine (AnimationPlayer.PlayOnPlayerFaint ());
 		if (audio != null) {
 			StartCoroutine (AnimationPlayer.PlayDefeatMusic ());
 		}
@@ -345,6 +360,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 				myPokeDama = pokeDamaManager.GetMyPokeDama ();
 				pokeDamaManager.DisplayMyPokeDama (playerPos);
 				AnimationPlayer.enabled = true;
+				UI.enabled = true;
 				//SceneManager.LoadScene ("PokeDamaScene");
 			} else {
 				Debug.Log ("Failed to find your PokeDama...");

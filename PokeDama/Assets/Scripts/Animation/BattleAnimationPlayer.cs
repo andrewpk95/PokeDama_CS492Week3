@@ -19,6 +19,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 	public GameObject g_lightning;
 	public GameObject g_soju;
 	public GameObject g_zzz;
+	public GameObject HealParticle;
 
 	UIProgressBar playerHealthBar;
 	UIProgressBar opponentHealthBar;
@@ -302,6 +303,21 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = false;
 	}
 
+	public IEnumerator PlayOnPlayerRun() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Player Run Animation Start");
+		float runSpeed = 15f;
+		for (int i = 0; i < 20; i++) {
+			myPokeDama.transform.Translate (Vector3.left * runSpeed * Time.deltaTime);
+			yield return new WaitForEndOfFrame ();
+		}
+		Debug.Log ("Player Run Animation Done");
+		mutex = false;
+	}
+
 	public IEnumerator PlayOnPlayerDamaged(float value, int health) {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
@@ -381,6 +397,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Player Heal Animation Start");
 		StartCoroutine (sound.PlayOnHeal ());
+		Instantiate (HealParticle, BattleGameManager.playerPos, Quaternion.identity);
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetMyPokeDama ();
 		int healthText = 0;
@@ -406,6 +423,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Opponent Heal Animation Start");
 		StartCoroutine (sound.PlayOnHeal ());
+		Instantiate (HealParticle, BattleGameManager.opponentPos, Quaternion.identity);
 		//Animate Healthbar change
 		PokeDama pk = pokeDamaManager.GetOpPokeDama ();
 		int healthText = 0;
@@ -431,7 +449,12 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Player Faint Animation Start");
 		StartCoroutine (sound.PlayOnFaint ());
-
+		StartCoroutine (Rotate (myPokeDama, 5, 1440f));
+		SpriteRenderer renderer = myPokeDama.GetComponent<SpriteRenderer> ();
+		for (int i = 0; i < 60; i++) {
+			renderer.color = new Color (1f, 1f, 1f, 1f - 0.02f * i);
+			yield return new WaitForEndOfFrame ();
+		}
 		Debug.Log ("Player Faint Animation Done");
 		mutex = false;
 	}
@@ -443,7 +466,12 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = true;
 		Debug.Log ("Opponent Faint Animation Start");
 		StartCoroutine (sound.PlayOnFaint ());
-
+		StartCoroutine (Rotate (opPokeDama, 5, 1440f));
+		SpriteRenderer renderer = opPokeDama.GetComponent<SpriteRenderer> ();
+		for (int i = 0; i < 50; i++) {
+			renderer.color = new Color (1f, 1f, 1f, 1f - 0.02f * i);
+			yield return new WaitForEndOfFrame ();
+		}
 		Debug.Log ("Opponent Faint Animation Done");
 		mutex = false;
 	}

@@ -40,13 +40,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  ErrorMessage: {fileID: 131630, guid: 555fe7c5a642b4cd6bd5632c1a4a06e6, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ErrorMessage
+      value: 
+      objectReference: {fileID: 131630, guid: 555fe7c5a642b4cd6bd5632c1a4a06e6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179842}
