@@ -32,6 +32,62 @@ io.on('connection', function(socket) {
     socket.emit('ConnectionTest', {message: 'efgh'});
   });
   
+  //Map Activity Connection
+  socket.on('MapActivity', function (data){
+    var wild_num = 4;
+    var wild_array = {
+      wild_num : wild_num, 
+      wild: []
+    };
+
+    var wild_lat = 0;
+    var wild_long = 0;
+
+    for(i = 0; i < wild_num; i++){
+      var random_lat = Math.random();
+      var random_long = Math.random();
+
+      // Scale since it's too big
+      if(random_lat > 0.5){
+        wild_lat = data.latitude + random_lat / 500;
+      }else{
+        wild_lat = data.latitude - random_lat / 500;
+      }
+
+      if(random_long > 0.5){
+        wild_long = data.longitude + random_long / 500;
+      }else{
+        wild_long = data.longitude - random_long / 500;
+      }
+       
+      var temp = {"latitude" : wild_lat,
+                  "longitude" : wild_long}
+      wild_array.wild.push({
+        "latitude" : wild_lat,
+        "longitude" : wild_long
+      });
+    }
+    //current near data
+    wild_array.wild.push({
+      "latitude" : data.latitude + 0.0001,
+      "longitude" : data.longitude + 0.0002});
+
+    // we tell the client to execute 'new message'
+    //socket.emit('new message', data);
+    socket.emit('new message', wild_array);
+    socket.IMEI = data.IMEI;
+  });
+
+  socket.on('fight', function (data){
+    console.log('fight :', data);
+    setTimeout(function(){
+      socket.broadcast.to(socket.IMEI).emit('Response', data);
+    }, 2000);
+    socket.emit('Response', data);
+    console.log('socket.IMEI : %s', socket.IMEI);
+    console.log('Response is emitted and broadcasted :', data);
+  });
+
   socket.on('Request', function (data) {
     console.log('Request Received: ', data);
     var jsonObj;
@@ -167,5 +223,72 @@ io.on('connection', function(socket) {
 	}
       });
     }
+    else if(jsonObj.RequestType == "SaveScene"){
+      //Save scene and uuid number on PokeScene DB
+      
+       MongoClient.connect(url, function (err, db) {
+         if (err) {
+           console.log('Error: ', err);
+         }
+         else {
+           var scene = jsonObj.SaveScene;
+           var num = 0;
+           
+            console.log('imei : ', scene.IMEI);
+
+            db.collection("PokeScene").find({"IMEI":scene.IMEI}).toArray(function (err, items) {
+              if (err) {
+                console.log('Error:', err);
+              }
+              else {
+                console.log('Processing Complete ', items);
+
+                 if(items.length == 0){
+                    db.collection("PokeScene").insertOne(scene);
+                  } else{
+                    db.collection("PokeScene").findAndModify(
+                      {IMEI: jsonObj.IMEI}, //QUERY
+                      [['_id', 'asc']], //sort order
+                      {$set: {scene: jsonObj.scene}}, //replacement, replaces only the field "hi"
+                      {}, //options
+                      function(err, object){
+                        if(err){
+                          console.warn(err.message);
+                        }else{
+                          console.log('db update ', object);
+                        }
+                      });
+                  }
+              }
+            });
+           }
+         });
+      }
+    else if(jsonObj.RequestType == "RetrieveScene"){
+      //Save scene and uuid number on PokeScene DB
+      console.log('Retrieve Scene : ', jsonObj.IMEI);
+
+      MongoClient.connect(url, function (err, db) {
+          if(err){
+            console.log('Error: ', err);
+          }
+          else {
+
+            db.collection("PokeScene").find({"IMEI":jsonObj.IMEI}).toArray(function (err, items) {
+              if (err) {
+                console.log('Error:', err);
+              }
+              else {
+                console.log('   Processing Complete ', items[0]);
+                console.log('   scene ', items[0].scene);
+                socket.emit('Response', {
+                  scene: items[0].scene 
+                });
+              }
+            });
+
+          }
+        });
+      }
   });
 });
