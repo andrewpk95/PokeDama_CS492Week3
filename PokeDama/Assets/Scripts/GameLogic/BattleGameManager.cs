@@ -229,6 +229,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	}
 
 	public void Run() {
+		StartCoroutine (UI.Mask ());
 		float random = Random.value;
 		if (random < 0.7) {
 			Debug.Log ("Successfully ran away!");
