@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BattleAnimationPlayer : MonoBehaviour {
 
-	public static bool mutex = false;
+	public bool mutex = false;
 
 	PokeDamaManager pokeDamaManager;
 	AudioManager audio;
