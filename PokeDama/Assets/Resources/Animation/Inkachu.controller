@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Inkachu_body
+  m_Name: Inkachu
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -231,7 +231,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cd04666767c2c4eefae59af1197204d5, type: 2}
+  m_Motion: {fileID: 7400000, guid: 75afd44065d21442eae7545fcd725d78, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -257,7 +257,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b8008843573a142cd808a70da52d4571, type: 2}
+  m_Motion: {fileID: 7400000, guid: e310c2db4c6364b45a7147b4876c25a7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -283,7 +283,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7ff5e1e54c0e34f19b156a8ffeb1add7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9b3b5d901b4cd4f2c9a930e90a4a0d9e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
