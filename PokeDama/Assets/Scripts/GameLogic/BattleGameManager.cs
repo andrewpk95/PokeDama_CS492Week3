@@ -13,11 +13,11 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 	public static Vector3 centerPos;
 
 	NetworkManager network;
-	BattleAnimationPlayer AnimationPlayer;
-	BattleUIManager UI;
-	AudioManager audio;
-	SoundManager sound;
-	PokeDamaManager pokeDamaManager;
+	public BattleAnimationPlayer AnimationPlayer;
+	public BattleUIManager UI;
+	public AudioManager audio;
+	public SoundManager sound;
+	public PokeDamaManager pokeDamaManager;
 	public GameObject opponentAI;
 
 	PokeDama myPokeDama;
@@ -99,11 +99,14 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
-		StartCoroutine (AnimationPlayer.Delay (1f));
+
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -137,7 +140,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -161,7 +167,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -185,7 +194,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -209,7 +221,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -230,13 +245,18 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.clickableMask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " lost " + reward + " friendliness..."));
 			StartCoroutine (UI.clickableMask ());
-			StartCoroutine (LoadScene ("MapScene"));
+			StartCoroutine (LoadScene ("PokeDamaScene"));
 		} else {
 			StartCoroutine (UI.SystemMessage ("You failed to run away..."));
-			StartCoroutine (UI.clickableMask ());
 			Debug.Log ("Failed to run away...");
 		}
 		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
+			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
+		}
 	}
 
 	public void DamageOpponent(int damage) {
@@ -279,7 +299,7 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		}
 		StartCoroutine (UI.SystemMessage ("You won!\n" + myPokeDama.name + " got " + reward + " friendliness!"));
 		StartCoroutine (UI.clickableMask ());
-		StartCoroutine (LoadScene ("MapScene"));
+		StartCoroutine (LoadScene ("PokeDamaScene"));
 	}
 
 	void onPlayerLose() {
@@ -342,12 +362,12 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		while (BattleAnimationPlayer.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		//BattleAnimationPlayer.mutex = true;
 		while (!safeToLoad) {
 			yield return new WaitForEndOfFrame ();
 		}
 		SceneManager.LoadScene (scene);
-		BattleAnimationPlayer.mutex = false;
+		//BattleAnimationPlayer.mutex = false;
 	}
 
 	void Save(PokeDama myPokeDama) {

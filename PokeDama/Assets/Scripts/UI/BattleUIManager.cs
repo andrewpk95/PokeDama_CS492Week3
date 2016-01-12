@@ -71,6 +71,8 @@ public class BattleUIManager : MonoBehaviour {
 		opponentLevelText.text += opPokeDama.level.ToString();
 		playerHPText.text = myPokeDama.health.ToString() + "/" + myPokeDama.maxHealth.ToString();
 		opponentHPText.text = opPokeDama.health.ToString() + "/" + opPokeDama.maxHealth.ToString();
+
+		textBox.text = "What will " + myPokeDama.name + " do?";
 	}
 
 	IEnumerator LoadButton() {

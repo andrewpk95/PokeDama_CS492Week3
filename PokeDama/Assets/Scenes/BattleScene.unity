@@ -966,7 +966,7 @@ MonoBehaviour:
   KickButton: {fileID: 1723212268}
   LightningButton: {fileID: 113636948}
   ThrowButton: {fileID: 737540104}
-  SpitButton: {fileID: 0}
+  SpitButton: {fileID: 2126481382}
   SleepButton: {fileID: 1458415429}
   RunButton: {fileID: 1621481515}
 --- !u!54 &786018019
