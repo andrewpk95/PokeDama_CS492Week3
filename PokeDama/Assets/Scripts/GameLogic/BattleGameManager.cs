@@ -99,11 +99,14 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float) opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
-		StartCoroutine (AnimationPlayer.Delay (1f));
+
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -137,7 +140,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -161,7 +167,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -185,7 +194,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -209,7 +221,10 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		CheckDeath ();
 		isPlayerTurn = !isPlayerTurn; //Switch turn
 		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
 			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
 		}
 	}
 
@@ -233,10 +248,15 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (LoadScene ("MapScene"));
 		} else {
 			StartCoroutine (UI.SystemMessage ("You failed to run away..."));
-			StartCoroutine (UI.clickableMask ());
 			Debug.Log ("Failed to run away...");
 		}
 		isPlayerTurn = !isPlayerTurn; //Switch turn
+		if (isPlayerTurn) {
+			StartCoroutine (UI.SystemMessage ("What will " + myPokeDama.name + " do?"));
+			StartCoroutine (UI.unMask ());
+		} else {
+			StartCoroutine (AnimationPlayer.Delay (1f));
+		}
 	}
 
 	public void DamageOpponent(int damage) {
