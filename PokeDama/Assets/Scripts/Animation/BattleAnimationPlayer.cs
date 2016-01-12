@@ -19,6 +19,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 	public GameObject g_lightning;
 	public GameObject g_soju;
 	public GameObject g_zzz;
+	public GameObject g_spit;
 	public GameObject HealParticle;
 
 	UIProgressBar playerHealthBar;
@@ -230,6 +231,58 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		mutex = false;
 	}
 
+	public IEnumerator PlayOnPlayerSpit() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Player Spit Animation Start");
+		GameObject spit = (GameObject)Instantiate (g_spit);
+		Vector3 vibration = new Vector3 (0.2f, 0);
+		int dir = 1;
+		for (int i = 0; i < 60; i++) {
+			if (i % 5 == 0) {
+				opPokeDama.transform.Translate (vibration * dir);
+				dir *= -1;
+			}
+			if (i % 10 == 0) {
+				StartCoroutine (sound.PlayOnThrow ());
+			}
+			yield return new WaitForEndOfFrame ();
+		}
+		//Destroy Effects
+		Destroy (spit);
+		opPokeDama.transform.position = BattleGameManager.opponentPos;
+		Debug.Log ("Player Spit Animation Done");
+		mutex = false;
+	}
+
+	public IEnumerator PlayOnOpponentSpit() {
+		while (mutex) {
+			yield return new WaitForEndOfFrame ();
+		}
+		mutex = true;
+		Debug.Log ("Opponent Spit Animation Start");
+		GameObject spit = (GameObject)Instantiate (g_spit);
+		Vector3 vibration = new Vector3 (0.2f, 0);
+		int dir = 1;
+		for (int i = 0; i < 60; i++) {
+			if (i % 5 == 0) {
+				myPokeDama.transform.Translate (vibration * dir);
+				dir *= -1;
+			}
+			if (i % 10 == 0) {
+				StartCoroutine (sound.PlayOnThrow ());
+			}
+			yield return new WaitForEndOfFrame ();
+		}
+		//Destroy Effects
+		Destroy (spit);
+		myPokeDama.transform.position = BattleGameManager.playerPos;
+		Debug.Log ("Opponent Spit Animation Done");
+		mutex = false;
+	}
+
 	public IEnumerator PlayOnPlayerSleep() {
 		while (mutex) {
 			yield return new WaitForEndOfFrame ();
@@ -346,15 +399,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		int healthText = 0;
 		while (playerHealthBar.value >= value) {
 			playerHealthBar.value -= 0.01f;
+			healthText = (int) (playerHealthBar.value * pk.maxHealth);
 			if (playerHealthBar.value >= 1 || playerHealthBar.value <= 0) { //Fail-Safe
 				break;
 			}
-			healthText = (int) (playerHealthBar.value * pk.maxHealth);
 			playerHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
-		if (healthText < health)
-			playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Player Damaged Animation Done");
 		mutex = false;
 	}
@@ -382,15 +434,14 @@ public class BattleAnimationPlayer : MonoBehaviour {
 		int healthText = 0;
 		while (opponentHealthBar.value >= value) {
 			opponentHealthBar.value -= 0.01f;
+			healthText = (int) (opponentHealthBar.value * pk.maxHealth);
 			if (opponentHealthBar.value >= 1 || opponentHealthBar.value <= 0) {
 				break;
 			}
-			healthText = (int) (opponentHealthBar.value * pk.maxHealth);
 			opponentHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
-		if (healthText < health)
-			opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Opponent Damaged Animation Done");
 		mutex = false;
 	}
@@ -415,8 +466,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			playerHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
-		if (healthText > health) 
-			playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		playerHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Player Heal Animation Done");
 		mutex = false;
 	}
@@ -441,8 +491,7 @@ public class BattleAnimationPlayer : MonoBehaviour {
 			opponentHPText.text = healthText.ToString () + " / " + pk.maxHealth.ToString ();
 			yield return new WaitForEndOfFrame ();
 		}
-		if (healthText > health)
-			opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
+		opponentHPText.text = health.ToString () + " / " + pk.maxHealth.ToString ();
 		Debug.Log ("Opponent Heal Animation Done");
 		mutex = false;
 	}

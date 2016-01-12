@@ -114,6 +114,7 @@ Transform:
   - {fileID: 1723212269}
   - {fileID: 113636949}
   - {fileID: 737540105}
+  - {fileID: 2126481383}
   - {fileID: 1458415430}
   - {fileID: 1621481516}
   m_Father: {fileID: 786018022}
@@ -907,6 +908,7 @@ MonoBehaviour:
   KickButton: {fileID: 1723212268}
   LightningButton: {fileID: 113636948}
   ThrowButton: {fileID: 737540104}
+  SpitButton: {fileID: 0}
   SleepButton: {fileID: 1458415429}
   RunButton: {fileID: 1621481515}
 --- !u!54 &786018019
@@ -1740,7 +1742,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 47095437}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1458415431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1963,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 47095437}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1621481517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2088,6 +2090,7 @@ MonoBehaviour:
   g_lightning: {fileID: 164176, guid: ff46834c229b24e7c9e5251e813d2732, type: 2}
   g_soju: {fileID: 161986, guid: 542b7c515b25b466ca38f765a706da4b, type: 2}
   g_zzz: {fileID: 126070, guid: f46ff267053c64e8db7531b1d3fae67f, type: 2}
+  g_spit: {fileID: 120642, guid: 2999ab387648b48d09d9c9bc7bcaabcc, type: 2}
   HealParticle: {fileID: 175472, guid: d77feac015f234c9d9a53c5c52830e40, type: 2}
   myPokeDama: {fileID: 0}
   opPokeDama: {fileID: 0}
@@ -2826,6 +2829,127 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!1 &2126481382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2126481383}
+  - 114: {fileID: 2126481386}
+  - 65: {fileID: 2126481385}
+  - 114: {fileID: 2126481384}
+  m_Layer: 5
+  m_Name: SpitButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2126481383
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126481382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 313, y: -70, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 47095437}
+  m_RootOrder: 3
+--- !u!114 &2126481384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126481382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 2126481382}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: Spit_hover
+  pressedSprite: Spit_hover
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 786018018}
+    mMethodName: OnSpitButtonClick
+    mParameters: []
+    oneShot: 0
+--- !u!65 &2126481385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126481382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 400, y: 90, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2126481386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126481382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 400
+  mHeight: 90
+  mDepth: 1
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 4.4444447
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11425346, guid: 0c07848788bd8402da802c481bbe0041, type: 2}
+  mSpriteName: Spit_button
+  mFillCenter: 1
 --- !u!1 &2127964004
 GameObject:
   m_ObjectHideFlags: 0

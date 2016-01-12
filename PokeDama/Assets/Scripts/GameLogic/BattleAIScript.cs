@@ -48,7 +48,7 @@ public class BattleAIScript : MonoBehaviour {
 				OnKick ();
 				break;
 			case 1:
-				OnThrow ();
+				OnSpit ();
 				break;
 			case 2:
 				OnSleep ();
@@ -74,6 +74,11 @@ public class BattleAIScript : MonoBehaviour {
 	void OnThrow() {
 		Debug.Log ("Opponent pressed Throw command!");
 		gameManager.Throw ();
+	}
+
+	void OnSpit() {
+		Debug.Log ("Opponent pressed Spit command!");
+		gameManager.Spit ();
 	}
 
 	void OnSleep() {
