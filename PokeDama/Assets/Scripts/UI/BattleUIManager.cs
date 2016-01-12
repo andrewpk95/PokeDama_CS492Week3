@@ -5,6 +5,7 @@ using System.Collections;
 public class BattleUIManager : MonoBehaviour {
 
 	BattleGameManager gameManager;
+	BattleAnimationPlayer anim;
 	SoundManager sound;
 	PokeDamaManager pokeDamaManager;
 
@@ -40,6 +41,7 @@ public class BattleUIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameManager = FindObjectOfType<BattleGameManager> ();
+		anim = FindObjectOfType<BattleAnimationPlayer> ();
 		sound = FindObjectOfType<SoundManager> ();
 		pokeDamaManager = FindObjectOfType<PokeDamaManager> ();
 
@@ -164,46 +166,59 @@ public class BattleUIManager : MonoBehaviour {
 	}
 
 	void OnEscapeKeyPress() {
-		Debug.Log ("You forfeit battle!");
-		gameManager.onForfeit ();
+		if (gameManager.gameOver) {
+			Application.Quit ();
+		} else {
+			Debug.Log ("You forfeit battle!");
+			gameManager.onForfeit ();
+		}
 	}
 
 	public IEnumerator SystemMessage(string text) {
-		while (BattleAnimationPlayer.mutex) {
+		while (anim.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		Debug.Log ("System Message Start");
+		anim.mutex = true;
 		textBox.text = text;
-		BattleAnimationPlayer.mutex = false;
+		anim.mutex = false;
+		Debug.Log ("System Message Done");
 	}
 
 	public IEnumerator Mask() {
-		while (BattleAnimationPlayer.mutex) {
+		Debug.Log ("Mask");
+		while (anim.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		Debug.Log ("Mask Start");
+		anim.mutex = true;
 		mask.depth = 10;
-		BattleAnimationPlayer.mutex = false;
+		anim.mutex = false;
+		Debug.Log ("Mask End");
 	}
 
 	public IEnumerator unMask() {
-		while (BattleAnimationPlayer.mutex) {
+		while (anim.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		Debug.Log ("Unmask Start");
+		anim.mutex = true;
 		mask.depth = -10;
-		BattleAnimationPlayer.mutex = false;
+		anim.mutex = false;
+		Debug.Log ("Unmask End");
 	}
 		
 	public IEnumerator clickableMask() {
-		while (BattleAnimationPlayer.mutex) {
+		while (anim.mutex) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = true;
+		Debug.Log ("Click Mask Start");
+		anim.mutex = true;
 		clickMask.depth = 20;
 		while (clickMask.depth > 0) {
 			yield return new WaitForEndOfFrame ();
 		}
-		BattleAnimationPlayer.mutex = false;
+		anim.mutex = false;
+		Debug.Log ("Click Mask End");
 	}
 }
