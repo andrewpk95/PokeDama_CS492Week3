@@ -17,7 +17,6 @@ public class PokeDama {
 	public int maxHealth = 10000;
 	public int health = 10000;
 	public int friendliness = 0;
-	public int strength = 0;
 
 	public PokeDama(string imei, int ID){
 		IMEI = imei;
@@ -55,10 +54,6 @@ public class PokeDama {
 		//Recalculate friendliness
 		if (friendliness < 0) {
 			friendliness = 0;
-		}
-		//Recalculate strength
-		if (strength < 0) {
-			strength = 0;
 		}
 		//Recalculate max health
 		maxHealth = 10000 + friendliness * 2;

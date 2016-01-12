@@ -69,7 +69,7 @@ public class ProfileUIManager : MonoBehaviour {
 
 	public void OnDebugBattleClick() {
 		audio.Stop ();
-		StartCoroutine (LoadScene ("BattleScene"));
+		SceneManager.LoadScene ("BattleScene");
 	}
 
 	public void OnPetButtonClick() {
@@ -81,7 +81,7 @@ public class ProfileUIManager : MonoBehaviour {
 	public void OnMapButtonClick() {
 		Debug.Log ("You will move to map scene...");
 		audio.Stop ();
-		StartCoroutine (LoadScene ("MapScene"));;
+		SceneManager.LoadScene ("MapScene");
 	}
 
 	public void OnFeedButtonClick() {
@@ -92,7 +92,7 @@ public class ProfileUIManager : MonoBehaviour {
 
 	void OnEscapeKeyPress() {
 		Debug.Log ("Quitting...");
-		StartCoroutine (QuitApp ());
+		Application.Quit();
 	}
 
 	public void SystemMessage(string text, float seconds) {
@@ -107,23 +107,5 @@ public class ProfileUIManager : MonoBehaviour {
 
 	public void EraseAllMessage() {
 		StopAllCoroutines ();
-	}
-
-	IEnumerator LoadScene(string scene) {
-		gameManager.Save ();
-		while (!gameManager.safeToLoad) {
-			yield return new WaitForEndOfFrame ();
-		}
-		gameManager.StopAutoSave ();
-		SceneManager.LoadScene (scene);
-	}
-
-	IEnumerator QuitApp() {
-		gameManager.Save ();
-		while (!gameManager.safeToLoad) {
-			yield return new WaitForEndOfFrame ();
-		}
-		gameManager.StopAutoSave ();
-		Application.Quit();
 	}
 }
