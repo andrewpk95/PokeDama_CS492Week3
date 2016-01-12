@@ -37,17 +37,17 @@ public class ShakeDetector : MonoBehaviour
             shakeDetectionThreshold *= shakeDetectionThreshold;
             lowPassValue = Input.acceleration;
             is_first = false;
-            //Debug.Log("is first if statement");
+            Debug.Log("is first if statement");
         }
 
         acceleration = Input.acceleration;
         lowPassValue = Vector3.Lerp(lowPassValue, acceleration, lowPassFilterFactor);
         deltaAcceleration = acceleration - lowPassValue;
-        //Debug.Log("deltaAcceleration.sqrMagnitude  " + deltaAcceleration.sqrMagnitude);
+        Debug.Log("deltaAcceleration.sqrMagnitude  " + deltaAcceleration.sqrMagnitude);
         if (deltaAcceleration.sqrMagnitude >= shakeDetectionThreshold)
         {
             // Perform your "shaking actions" here, with suitable guards in the if check above, if necessary to not, to not fire again if they're already being performed.
-            //Debug.Log("Shake event detected at time " + Time.time);
+            Debug.Log("Shake event detected at time " + Time.time);
             return true;
         }
 

@@ -18,8 +18,8 @@ public class CreateGameManager : MonoBehaviour, GameManager {
 	PokeDamaManager pokeDamaManager;
 	// Use this for initialization
 	void Start () {
-		inkachuPos = new Vector3 (-1.45f, -0.8f, -0.1f);
-		zaraboogiPos = new Vector3 (1.42f, -1.01f, -0.1f);
+		inkachuPos = new Vector3 (-1.45f, -0.8f);
+		zaraboogiPos = new Vector3 (1.42f, -1.01f);
 
 		network = FindObjectOfType<NetworkManager> ();
 		UI = FindObjectOfType<CreateUIManager> ();
