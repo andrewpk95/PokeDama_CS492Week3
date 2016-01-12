@@ -27,7 +27,7 @@ public class ShakeDetector : MonoBehaviour
 	
 	}
 
-	public bool isShaked(){
+	public static bool isShaked(){
         if (is_first)
         {
             lowPassFilterFactor = accelerometerUpdateInterval / lowPassKernelWidthInSeconds;
