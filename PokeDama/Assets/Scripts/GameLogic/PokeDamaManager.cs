@@ -33,6 +33,14 @@ public class PokeDamaManager : MonoBehaviour {
 		
 	}
 
+	public void DisplayInkachu(Vector3 position) {
+		Instantiate (id_1, position, Quaternion.identity);
+	}
+
+	public void DisplayZaraboogi(Vector3 position) {
+		Instantiate (id_2, position, Quaternion.identity);
+	}
+
 	public void DisplayMyPokeDama(Vector3 position) {
 		switch (myPokeDama.id) {
 		case 1:

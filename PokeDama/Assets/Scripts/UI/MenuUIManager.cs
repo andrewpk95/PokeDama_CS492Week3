@@ -13,9 +13,4 @@ public class MenuUIManager : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public void OnProfileButtonClick() {
-		Debug.Log ("Moving to Profile Scene...");
-		SceneManager.LoadScene ("PokeDamaScene");
-	}
 }

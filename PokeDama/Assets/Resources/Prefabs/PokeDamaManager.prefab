@@ -42,8 +42,8 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   myPicture: {fileID: 0}
   opPicture: {fileID: 0}
-  id_1: {fileID: 107694, guid: 0903522efd72641daba26a60281eb26b, type: 2}
-  id_2: {fileID: 184848, guid: 4a31fc39b1f64425fbfd911838a94d09, type: 2}
+  id_1: {fileID: 195398, guid: a02c0988bc5a8457191063d50362e9cd, type: 2}
+  id_2: {fileID: 105120, guid: d5145f53fc7b548348d45221997dd5ac, type: 2}
   id_1_Battle: {fileID: 185774, guid: 549fa64dddc4740c29ab8566d476b449, type: 2}
   id_2_Battle: {fileID: 179166, guid: 7f50d67468fa9470d8efb814bd33351b, type: 2}
   id_1_Opponent: {fileID: 147660, guid: 9e0d44ef846794974b06f4ff6732da91, type: 2}
@@ -66,11 +66,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: id_1
       value: 
-      objectReference: {fileID: 107694, guid: 0903522efd72641daba26a60281eb26b, type: 2}
+      objectReference: {fileID: 195398, guid: a02c0988bc5a8457191063d50362e9cd, type: 2}
     - target: {fileID: 0}
       propertyPath: id_2
       value: 
-      objectReference: {fileID: 184848, guid: 4a31fc39b1f64425fbfd911838a94d09, type: 2}
+      objectReference: {fileID: 105120, guid: d5145f53fc7b548348d45221997dd5ac, type: 2}
     - target: {fileID: 0}
       propertyPath: id_2_Battle
       value: 

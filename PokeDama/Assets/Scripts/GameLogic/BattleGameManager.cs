@@ -35,7 +35,6 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		playerPos = new Vector3 (-1.5f, -0.0f, 0f);
 		opponentPos = new Vector3 (1.5f, 2.5f, 0f);
 		centerPos = Vector3.Lerp (playerPos, opponentPos, 0.5f);
-		Debug.Log (centerPos);
 
 		string imei = SystemInfo.deviceUniqueIdentifier;
 		network = FindObjectOfType<NetworkManager> ();
