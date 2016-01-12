@@ -49,12 +49,12 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	
 	// Update is called once per frame
 	void Update () {
-		if (shakeDetector.isShaked ()) {
-			Debug.Log ("Device Shaken!");
-		}
-		if (shakeDetector.counting) {
-			Exercise ();
-		}
+        if (ShakeDetector.isShaked())
+        {
+            Debug.Log("Update isShaked() is TRUE");
+            Exercise();
+        }
+        Debug.Log("Update isShaked() is false");
 	}
 
 	public void Pet() {
