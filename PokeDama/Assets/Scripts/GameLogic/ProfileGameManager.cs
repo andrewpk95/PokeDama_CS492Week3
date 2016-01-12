@@ -72,7 +72,7 @@ public class ProfileGameManager : MonoBehaviour, GameManager {
 	public void Exercise() {
 		UI.EraseAllMessage ();
 		UI.SystemMessage ("You just exercised " + myPokeDama.name + "!", 3);
-		myPokeDama.friendliness += 10;
+		myPokeDama.strength += 2;
 		myPokeDama.recalculateStat ();
 		safeToLoad = false;
 		StartCoroutine (AnimationPlayer.PlayOnFriendliness (myPokeDama.friendliness));

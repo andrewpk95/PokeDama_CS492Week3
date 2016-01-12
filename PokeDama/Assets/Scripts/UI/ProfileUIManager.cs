@@ -92,7 +92,7 @@ public class ProfileUIManager : MonoBehaviour {
 
 	void OnEscapeKeyPress() {
 		Debug.Log ("Quitting...");
-		Application.Quit();
+		StartCoroutine (QuitApp ());
 	}
 
 	public void SystemMessage(string text, float seconds) {
@@ -116,5 +116,14 @@ public class ProfileUIManager : MonoBehaviour {
 		}
 		gameManager.StopAutoSave ();
 		SceneManager.LoadScene (scene);
+	}
+
+	IEnumerator QuitApp() {
+		gameManager.Save ();
+		while (!gameManager.safeToLoad) {
+			yield return new WaitForEndOfFrame ();
+		}
+		gameManager.StopAutoSave ();
+		Application.Quit();
 	}
 }

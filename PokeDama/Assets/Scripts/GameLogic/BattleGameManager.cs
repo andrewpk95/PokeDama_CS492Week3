@@ -79,8 +79,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		int myDamage = 0;
 		if (isPlayerTurn) {
 			StartCoroutine (UI.Mask ());
-			opDamage = 3000;
-			myDamage = 1500;
+			opDamage = 2000 + 10 * myPokeDama.strength;
+			myDamage = opDamage / 2;
 			DamageOpponent (opDamage);
 			DamageMine (myDamage);
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Kick!"));
@@ -89,8 +89,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " took recoil damage!"));
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		} else {
-			opDamage = 1500;
-			myDamage = 3000;
+			myDamage = 2000 + 10 * opPokeDama.strength;
+			opDamage = myDamage / 2;
 			DamageMine (myDamage);
 			DamageOpponent (opDamage);
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Kick!"));
@@ -115,8 +115,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 		int myDamage = 0;
 		if (isPlayerTurn) {
 			StartCoroutine (UI.Mask ());
-			opDamage = 3000;
-			myDamage = 1500;
+			opDamage = 2000 + 10 * myPokeDama.strength;
+			myDamage = opDamage / 2;
 			DamageOpponent (opDamage);
 			DamageMine (myDamage);
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used 110V!"));
@@ -126,8 +126,8 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 
 		} else {
-			opDamage = 1500;
-			myDamage = 3000;
+			myDamage = 2000 + 10 * opPokeDama.strength;
+			opDamage = myDamage / 2;
 			DamageMine (myDamage);
 			DamageOpponent (opDamage);
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used 110V!"));
@@ -153,13 +153,13 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.Mask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Throw!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerThrow ());
-			damage = 1500;
+			damage = 1500 + 5 * myPokeDama.strength;
 			DamageOpponent (damage);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		} else {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Throw!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentThrow ());
-			damage = 1500;
+			damage = 1500 + 5 * opPokeDama.strength;
 			DamageMine (damage);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		}
@@ -180,13 +180,13 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.Mask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Spit!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerSpit ());
-			damage = 1500;
+			damage = 1500 + 5 * myPokeDama.strength;
 			DamageOpponent (damage);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentDamaged (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		} else {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Spit!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentSpit ());
-			damage = 1500;
+			damage = 1500 + 5 * opPokeDama.strength;
 			DamageMine (damage);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerDamaged (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		}
@@ -207,13 +207,13 @@ public class BattleGameManager : MonoBehaviour, GameManager {
 			StartCoroutine (UI.Mask ());
 			StartCoroutine (UI.SystemMessage (myPokeDama.name + " used Sleep!"));
 			StartCoroutine (AnimationPlayer.PlayOnPlayerSleep ());
-			heal = -1000;
+			heal = -1000 - myPokeDama.friendliness;
 			DamageMine (heal);
 			StartCoroutine(AnimationPlayer.PlayOnPlayerHeal (((float)myPokeDama.health) / myPokeDama.maxHealth, myPokeDama.health));
 		} else {
 			StartCoroutine (UI.SystemMessage (opPokeDama.name + " used Sleep!"));
 			StartCoroutine (AnimationPlayer.PlayOnOpponentSleep ());
-			heal = -1000;
+			heal = -1000 - opPokeDama.friendliness;
 			DamageOpponent (heal);
 			StartCoroutine(AnimationPlayer.PlayOnOpponentHeal (((float)opPokeDama.health) / opPokeDama.maxHealth, opPokeDama.health));
 		}
